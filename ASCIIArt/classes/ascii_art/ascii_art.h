@@ -11,18 +11,27 @@
 
 #include <iostream>
 #include <set>
+#include <vector>
 #include "character_opacity.h"
 #include "structs.h"
+
+namespace cv
+{
+	class Mat;
+	class VideoCapture;
+}
 
 class ASCIIArt
 {
 private:
 	std::set<CharacterOpacity *> characterOpacities;
 	char characterForRegionOpacity(const RegionOpacity &regionOpacity) const;
+	void getASCIIStringFromImageOpacities(std::vector<std::vector<RegionOpacity> > *imageOpacities, std::string *imageStr) const;
 public:
 	ASCIIArt();
 	~ASCIIArt();
-	std::string *newASCIIArtStringForImageName(const std::string &imageName) const;
+	std::string *newASCIIArtStringForImageName(const std::string &imageName, cv::Mat &resultImage) const;
+	std::string *newASCIIArtStringForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage) const;
 };
 
 #endif /* defined(__ASCIIArt__ascii_art__) */

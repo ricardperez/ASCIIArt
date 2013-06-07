@@ -17,7 +17,7 @@ class CharacterOpacity;
 class CharacterOpacityCalculator
 {
 private:
-	const Size lettersSize;
+	const ASCII_Size lettersSize;
 public:
 	
 	CharacterOpacityCalculator(int lettersSizeWidth=22, int lettersSizeHeight=22) : lettersSize(lettersSizeWidth, lettersSizeHeight) {}

@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1977AC831761F0FA00629032 /* camera_to_ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */; };
+		1977ACC0176216FA00629032 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACBF176216FA00629032 /* Cocoa.framework */; };
+		1977ACCA176216FB00629032 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACC8176216FB00629032 /* InfoPlist.strings */; };
+		1977ACCC176216FB00629032 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACCB176216FB00629032 /* main.m */; };
+		1977ACD0176216FB00629032 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACCE176216FB00629032 /* Credits.rtf */; };
+		1977ACD3176216FB00629032 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACD2176216FB00629032 /* AppDelegate.mm */; };
+		1977ACD6176216FB00629032 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACD4176216FB00629032 /* MainMenu.xib */; };
+		1977ACDA176217CE00629032 /* structs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBBD17610FED00C28FC9 /* structs.cpp */; };
+		1977ACDB176217CE00629032 /* parameters_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBD117613C8600C28FC9 /* parameters_manager.cpp */; };
+		1977ACDC176217CE00629032 /* character_opacity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBB317610D2B00C28FC9 /* character_opacity.cpp */; };
+		1977ACDD176217CE00629032 /* character_opacity_calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC1176122F000C28FC9 /* character_opacity_calculator.cpp */; };
+		1977ACDE176217CE00629032 /* image_fragmenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC51761230900C28FC9 /* image_fragmenter.cpp */; };
+		1977ACDF176217CE00629032 /* ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC917612B8500C28FC9 /* ascii_art.cpp */; };
+		1977ACE0176217CE00629032 /* camera_to_ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */; };
+		1977ACE3176217E800629032 /* Foo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE1176217E800629032 /* Foo.cpp */; };
+		1977ACE41762182E00629032 /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBA7176108AC00C28FC9 /* libopencv_core.dylib */; };
+		1977ACE51762183000629032 /* libopencv_highgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBA8176108AC00C28FC9 /* libopencv_highgui.dylib */; };
+		1977ACE61762183200629032 /* libopencv_imgproc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBA9176108AC00C28FC9 /* libopencv_imgproc.dylib */; };
+		1977ACE71762183900629032 /* libopencv_ml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBAA176108AC00C28FC9 /* libopencv_ml.dylib */; };
+		1977ACEA176220F900629032 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE8176220F900629032 /* functions.cpp */; };
+		1977ACEB176225BD00629032 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE8176220F900629032 /* functions.cpp */; };
 		19F8DB9B1761085200C28FC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DB9A1761085200C28FC9 /* main.cpp */; };
 		19F8DB9D1761085200C28FC9 /* ASCIIArt.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19F8DB9C1761085200C28FC9 /* ASCIIArt.1 */; };
 		19F8DBAB176108AC00C28FC9 /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBA7176108AC00C28FC9 /* libopencv_core.dylib */; };
@@ -35,6 +56,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera_to_ascii_art.cpp; sourceTree = "<group>"; };
+		1977AC821761F0FA00629032 /* camera_to_ascii_art.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_to_ascii_art.h; sourceTree = "<group>"; };
+		1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacASCIIArtVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1977ACBF176216FA00629032 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1977ACC2176216FA00629032 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1977ACC3176216FA00629032 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1977ACC4176216FA00629032 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1977ACC7176216FB00629032 /* MacASCIIArtVideo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacASCIIArtVideo-Info.plist"; sourceTree = "<group>"; };
+		1977ACC9176216FB00629032 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1977ACCB176216FB00629032 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1977ACCD176216FB00629032 /* MacASCIIArtVideo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacASCIIArtVideo-Prefix.pch"; sourceTree = "<group>"; };
+		1977ACCF176216FB00629032 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1977ACD1176216FB00629032 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1977ACD2176216FB00629032 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		1977ACD5176216FB00629032 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1977ACE1176217E800629032 /* Foo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Foo.cpp; sourceTree = "<group>"; };
+		1977ACE2176217E800629032 /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		1977ACE8176220F900629032 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
+		1977ACE9176220F900629032 /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functions.h; sourceTree = "<group>"; };
 		19F8DB971761085200C28FC9 /* ASCIIArt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ASCIIArt; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F8DB9A1761085200C28FC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		19F8DB9C1761085200C28FC9 /* ASCIIArt.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ASCIIArt.1; sourceTree = "<group>"; };
@@ -57,6 +97,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1977ACBA176216FA00629032 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1977ACE61762183200629032 /* libopencv_imgproc.dylib in Frameworks */,
+				1977ACC0176216FA00629032 /* Cocoa.framework in Frameworks */,
+				1977ACE41762182E00629032 /* libopencv_core.dylib in Frameworks */,
+				1977ACE51762183000629032 /* libopencv_highgui.dylib in Frameworks */,
+				1977ACE71762183900629032 /* libopencv_ml.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		19F8DB941761085200C28FC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,10 +123,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1977AC801761F0EE00629032 /* camera_to_ascii */ = {
+			isa = PBXGroup;
+			children = (
+				1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */,
+				1977AC821761F0FA00629032 /* camera_to_ascii_art.h */,
+			);
+			path = camera_to_ascii;
+			sourceTree = "<group>";
+		};
+		1977ACBE176216FA00629032 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1977ACBF176216FA00629032 /* Cocoa.framework */,
+				1977ACC1176216FA00629032 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1977ACC1176216FA00629032 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1977ACC2176216FA00629032 /* AppKit.framework */,
+				1977ACC3176216FA00629032 /* CoreData.framework */,
+				1977ACC4176216FA00629032 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1977ACC5176216FB00629032 /* MacASCIIArtVideo */ = {
+			isa = PBXGroup;
+			children = (
+				1977ACD1176216FB00629032 /* AppDelegate.h */,
+				1977ACD2176216FB00629032 /* AppDelegate.mm */,
+				1977ACD4176216FB00629032 /* MainMenu.xib */,
+				1977ACC6176216FB00629032 /* Supporting Files */,
+				1977ACE1176217E800629032 /* Foo.cpp */,
+				1977ACE2176217E800629032 /* Foo.h */,
+			);
+			path = MacASCIIArtVideo;
+			sourceTree = "<group>";
+		};
+		1977ACC6176216FB00629032 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1977ACC7176216FB00629032 /* MacASCIIArtVideo-Info.plist */,
+				1977ACC8176216FB00629032 /* InfoPlist.strings */,
+				1977ACCB176216FB00629032 /* main.m */,
+				1977ACCD176216FB00629032 /* MacASCIIArtVideo-Prefix.pch */,
+				1977ACCE176216FB00629032 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		19F8DB8E1761085200C28FC9 = {
 			isa = PBXGroup;
 			children = (
 				19F8DB991761085200C28FC9 /* ASCIIArt */,
+				1977ACC5176216FB00629032 /* MacASCIIArtVideo */,
+				1977ACBE176216FA00629032 /* Frameworks */,
 				19F8DB981761085200C28FC9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				19F8DB971761085200C28FC9 /* ASCIIArt */,
+				1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +216,7 @@
 				19F8DBC0176122F000C28FC9 /* character_opacity_calculator */,
 				19F8DBC41761230100C28FC9 /* image_fragmenter */,
 				19F8DBC817612B7E00C28FC9 /* ascii_art */,
+				1977AC801761F0EE00629032 /* camera_to_ascii */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -159,6 +268,8 @@
 		19F8DBBB17610FD600C28FC9 /* functions */ = {
 			isa = PBXGroup;
 			children = (
+				1977ACE8176220F900629032 /* functions.cpp */,
+				1977ACE9176220F900629032 /* functions.h */,
 			);
 			path = functions;
 			sourceTree = "<group>";
@@ -211,6 +322,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1977ACBC176216FA00629032 /* MacASCIIArtVideo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1977ACD7176216FB00629032 /* Build configuration list for PBXNativeTarget "MacASCIIArtVideo" */;
+			buildPhases = (
+				1977ACB9176216FA00629032 /* Sources */,
+				1977ACBA176216FA00629032 /* Frameworks */,
+				1977ACBB176216FA00629032 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacASCIIArtVideo;
+			productName = MacASCIIArtVideo;
+			productReference = 1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		19F8DB961761085200C28FC9 /* ASCIIArt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19F8DBA01761085200C28FC9 /* Build configuration list for PBXNativeTarget "ASCIIArt" */;
@@ -250,11 +378,43 @@
 			projectRoot = "";
 			targets = (
 				19F8DB961761085200C28FC9 /* ASCIIArt */,
+				1977ACBC176216FA00629032 /* MacASCIIArtVideo */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		1977ACBB176216FA00629032 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1977ACCA176216FB00629032 /* InfoPlist.strings in Resources */,
+				1977ACD0176216FB00629032 /* Credits.rtf in Resources */,
+				1977ACD6176216FB00629032 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		1977ACB9176216FA00629032 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1977ACDA176217CE00629032 /* structs.cpp in Sources */,
+				1977ACDB176217CE00629032 /* parameters_manager.cpp in Sources */,
+				1977ACDC176217CE00629032 /* character_opacity.cpp in Sources */,
+				1977ACDD176217CE00629032 /* character_opacity_calculator.cpp in Sources */,
+				1977ACDE176217CE00629032 /* image_fragmenter.cpp in Sources */,
+				1977ACDF176217CE00629032 /* ascii_art.cpp in Sources */,
+				1977ACE0176217CE00629032 /* camera_to_ascii_art.cpp in Sources */,
+				1977ACCC176216FB00629032 /* main.m in Sources */,
+				1977ACD3176216FB00629032 /* AppDelegate.mm in Sources */,
+				1977ACE3176217E800629032 /* Foo.cpp in Sources */,
+				1977ACEB176225BD00629032 /* functions.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		19F8DB931761085200C28FC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,12 +426,69 @@
 				19F8DBC71761230900C28FC9 /* image_fragmenter.cpp in Sources */,
 				19F8DBCB17612B8500C28FC9 /* ascii_art.cpp in Sources */,
 				19F8DBD317613C8600C28FC9 /* parameters_manager.cpp in Sources */,
+				1977AC831761F0FA00629032 /* camera_to_ascii_art.cpp in Sources */,
+				1977ACEA176220F900629032 /* functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		1977ACC8176216FB00629032 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1977ACC9176216FB00629032 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1977ACCE176216FB00629032 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1977ACCF176216FB00629032 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1977ACD4176216FB00629032 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1977ACD5176216FB00629032 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		1977ACD8176216FB00629032 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacASCIIArtVideo/MacASCIIArtVideo-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "MacASCIIArtVideo/MacASCIIArtVideo-Info.plist";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1977ACD9176216FB00629032 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacASCIIArtVideo/MacASCIIArtVideo-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "MacASCIIArtVideo/MacASCIIArtVideo-Info.plist";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		19F8DB9E1761085200C28FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +549,9 @@
 		19F8DBA11761085200C28FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,6 +561,9 @@
 		19F8DBA21761085200C28FC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,6 +573,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1977ACD7176216FB00629032 /* Build configuration list for PBXNativeTarget "MacASCIIArtVideo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1977ACD8176216FB00629032 /* Debug */,
+				1977ACD9176216FB00629032 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		19F8DB921761085200C28FC9 /* Build configuration list for PBXProject "ASCIIArt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -366,6 +597,7 @@
 				19F8DBA21761085200C28FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

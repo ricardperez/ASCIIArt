@@ -8,30 +8,55 @@
 
 #include "image_fragmenter.h"
 #include <opencv2/opencv.hpp>
+#include "functions.h"
+#include <opencv2/highgui.hpp>
 
-std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImage(const std::string &imageName, const int chunksWidth, const int chunksHeight) const
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImage(const std::string &imageName, cv::Mat &resultImage, const int chunksWidth, const int chunksHeight) const
 {
-	Size chunksSize(chunksWidth, chunksHeight);
+	cv::Mat imageMat = cv::imread(imageName);
+	return this->newOpacitiesForImageMat(imageMat, resultImage, chunksWidth, chunksHeight);
+}
+
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, const int chunksWidth, const int chunksHeight) const
+{
+	cv::Mat new_image = cv::Mat::zeros( imageMat.size(), imageMat.type() );
+	float alpha = 2.5f;
+	int beta = 1;
+	for( int y = 0; y < imageMat.rows; y++ )
+    {
+		for( int x = 0; x < imageMat.cols; x++ )
+		{
+			for( int c = 0; c < 3; c++ )
+			{
+				new_image.at<cv::Vec3b>(y,x)[c] = cv::saturate_cast<uchar>( alpha*( imageMat.at<cv::Vec3b>(y,x)[c] ) + beta );
+			}
+		}
+    }
 	
-	cv::Mat imageMat = cv::imread(imageName, cv::IMREAD_GRAYSCALE);
+	cv::cvtColor(new_image, resultImage, cv::COLOR_BGR2GRAY);
+//	cv::Canny(resultImage, resultImage, 20, 50);
+//	resultImage = 255-resultImage;
 	
-	std::vector<std::vector<RegionOpacity>> *rows = new std::vector<std::vector<RegionOpacity> >();
+	
+	ASCII_Size chunksSize(chunksWidth, chunksHeight);
+	std::vector<std::vector<RegionOpacity> > *rows = new std::vector<std::vector<RegionOpacity> >();
 	for (int iRow=0; iRow<imageMat.rows; iRow += chunksSize.height)
 	{
 		std::vector<RegionOpacity> row;
 		for (int iCol=0; iCol<imageMat.cols; iCol += chunksSize.width)
 		{
-			RegionOpacity regionOpacity = this->getOpacityForRegionForImage(iRow, iCol, chunksSize, imageMat);
+			RegionOpacity regionOpacity = this->getOpacityForRegionForImage(iRow, iCol, chunksSize, resultImage);
 			row.push_back(regionOpacity);
 		}
 		rows->push_back(row);
 	}
 	
+	NormalizeRegions(*rows);
+	
 	return rows;
 }
 
-
-RegionOpacity ImageFragmenter::getOpacityForRegionForImage(const int &rowIndex, const int &columnIndex, const Size &regionSize, const cv::Mat &imageMat) const
+RegionOpacity ImageFragmenter::getOpacityForRegionForImage(const int &rowIndex, const int &columnIndex, const ASCII_Size &regionSize, const cv::Mat &imageMat) const
 {
 	int opaquePixelsNW = 0;
 	int nPixelsNW = 0;

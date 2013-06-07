@@ -10,6 +10,7 @@
 #include "image_fragmenter.h"
 #include "character_opacity_calculator.h"
 #include <cfloat>
+#include "functions.h"
 
 ASCIIArt::ASCIIArt()
 {
@@ -19,22 +20,26 @@ ASCIIArt::ASCIIArt()
 		CharacterOpacity *characterOpacity = characterOpacityCalculator.newCharacterOpacityForCharacter(nextChar);
 		this->characterOpacities.insert(characterOpacity);
 	}
-	for (char nextChar='a'; nextChar<='z'; ++nextChar)
-	{
-		CharacterOpacity *characterOpacity = characterOpacityCalculator.newCharacterOpacityForCharacter(nextChar);
-		this->characterOpacities.insert(characterOpacity);
-	}
-	for (char nextChar='0'; nextChar<='9'; ++nextChar)
-	{
-		CharacterOpacity *characterOpacity = characterOpacityCalculator.newCharacterOpacityForCharacter(nextChar);
-		this->characterOpacities.insert(characterOpacity);
-	}
+//	for (char nextChar='a'; nextChar<='z'; ++nextChar)
+//	{
+//		CharacterOpacity *characterOpacity = characterOpacityCalculator.newCharacterOpacityForCharacter(nextChar);
+//		this->characterOpacities.insert(characterOpacity);
+//	}
+//	for (char nextChar='0'; nextChar<='9'; ++nextChar)
+//	{
+//		CharacterOpacity *characterOpacity = characterOpacityCalculator.newCharacterOpacityForCharacter(nextChar);
+//		this->characterOpacities.insert(characterOpacity);
+//	}
 //	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter(' '));
-//	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter('.'));
+	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter('.'));
+	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter('-'));
 //	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter(','));
 //	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter(':'));
 //	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter('?'));
 //	this->characterOpacities.insert(characterOpacityCalculator.newCharacterOpacityForCharacter('!'));
+	
+	NormalizeCharacerOpacities(this->characterOpacities);
+	
 }
 
 ASCIIArt::~ASCIIArt()
@@ -45,12 +50,30 @@ ASCIIArt::~ASCIIArt()
 	}
 }
 
-std::string *ASCIIArt::newASCIIArtStringForImageName(const std::string &imageName) const
+std::string *ASCIIArt::newASCIIArtStringForImageName(const std::string &imageName, cv::Mat &resultImage) const
 {
 	std::string *imageStr = new std::string();
 	ImageFragmenter imageFragmenter;
-	std::vector<std::vector<RegionOpacity> > *imageOpacities = imageFragmenter.newOpacitiesForImage(imageName);
+	std::vector<std::vector<RegionOpacity> > *imageOpacities = imageFragmenter.newOpacitiesForImage(imageName, resultImage);
 	
+	this->getASCIIStringFromImageOpacities(imageOpacities, imageStr);
+	delete imageOpacities;
+	return imageStr;
+}
+
+std::string *ASCIIArt::newASCIIArtStringForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage) const
+{	
+	std::string *imageStr = new std::string();
+	ImageFragmenter imageFragmenter;
+	std::vector<std::vector<RegionOpacity> > *imageOpacities = imageFragmenter.newOpacitiesForImageMat(imageMat, resultImage);
+	
+	this->getASCIIStringFromImageOpacities(imageOpacities, imageStr);
+	delete imageOpacities;
+	return imageStr;
+}
+
+void ASCIIArt::getASCIIStringFromImageOpacities(std::vector<std::vector<RegionOpacity> > *imageOpacities, std::string *imageStr) const
+{
 	for (std::vector<std::vector<RegionOpacity> >::iterator rowsIterator=imageOpacities->begin(); rowsIterator!=imageOpacities->end(); ++rowsIterator)
 	{
 		std::vector<RegionOpacity> row = *rowsIterator;
@@ -70,11 +93,8 @@ std::string *ASCIIArt::newASCIIArtStringForImageName(const std::string &imageNam
 			imageStr->push_back('\n');
 		}
 	}
-	
-	delete imageOpacities;
-	
-	return imageStr;
 }
+
 
 char ASCIIArt::characterForRegionOpacity(const RegionOpacity &regionOpacity) const
 {

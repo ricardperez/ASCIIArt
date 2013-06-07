@@ -10,62 +10,42 @@
 
 const std::string ParametersManager::INPUT_IMAGE_NAME = "_in_image_name_";
 const std::string ParametersManager::OUTPUT_FILE_NAME = "_out_file_name_";
+const std::string ParametersManager::INPUT_VIDEO = "_input_video_";
 const std::string ParametersManager::HELP_DEMANDED = "_help_demanded_";
 const std::string ParametersManager::UNKNOWN_PARAMETER = "_unknown_parameter_";
 
 
 ParametersManager::ParametersManager(int argc, const char *argv[])
 {
-	std::string *inputImageName = 0;
-	std::string *outputFileName = 0;
-	
-	if (argc > 1)
+	for (int i=1; i<argc; ++i)
 	{
-		if (argc == 2)
+		std::string nextArg = argv[i];
+		if (this->argumentIsAKey(nextArg))
 		{
-			inputImageName = new std::string(argv[1]);
+			++i;
+			if (i<argc)
+			{
+				this->parameters[this->parametersKeyForKeyArgument(nextArg)] = argv[i];
+			}
+		} else if (this->argumentIsHelp(nextArg))
+		{
+			this->parameters[HELP_DEMANDED] = argv[i];
+		} else if (this->argumentIsInputVideo(nextArg))
+		{
+			this->parameters[INPUT_VIDEO] = argv[i];
 		} else
 		{
-			for (int i=1; i<argc; ++i)
+			if (!this->inputImageName(0))
 			{
-				std::string nextArg = argv[i];
-				if (this->argumentIsAKey(nextArg))
-				{
-					++i;
-					if (i<argc)
-					{
-						this->parameters[this->parametersKeyForKeyArgument(nextArg)] = argv[i];
-					}
-				} else if (this->argumentIsHelp(nextArg))
-				{
-					this->parameters[HELP_DEMANDED] = argv[i];
-				} else
-				{
-					if (inputImageName == 0)
-					{
-						this->parameters[INPUT_IMAGE_NAME] = argv[i];
-					} else if (outputFileName == 0)
-					{
-						this->parameters[OUTPUT_FILE_NAME] = argv[i];
-					} else
-					{
-						this->parameters[UNKNOWN_PARAMETER] = argv[i];
-					}
-				}
+				this->parameters[INPUT_IMAGE_NAME] = argv[i];
+			} else if (!this->outputFileName(0))
+			{
+				this->parameters[OUTPUT_FILE_NAME] = argv[i];
+			} else
+			{
+				this->parameters[UNKNOWN_PARAMETER] = argv[i];
 			}
 		}
-		
-	}
-	
-	if (inputImageName != 0)
-	{
-		this->parameters[INPUT_IMAGE_NAME] = *inputImageName;
-		delete inputImageName;
-	}
-	if (outputFileName != 0)
-	{
-		this->parameters[OUTPUT_FILE_NAME] = *outputFileName;
-		delete outputFileName;
 	}
 }
 
@@ -79,6 +59,13 @@ bool ParametersManager::argumentIsHelp(const std::string &argument) const
 	return ((argument.compare("--help") == 0) ||
 			(argument.compare("-help") == 0) ||
 			(argument.compare("-h") == 0));
+}
+
+bool ParametersManager::argumentIsInputVideo(const std::string &argument) const
+{
+	return ((argument.compare("--camera") == 0) ||
+			(argument.compare("-camera") == 0) ||
+			(argument.compare("-video") == 0));
 }
 
 const std::string ParametersManager::parametersKeyForKeyArgument(const std::string &argument) const
@@ -108,7 +95,10 @@ bool ParametersManager::inputImageName(std::string *inputNameRef)
 	const std::map<const std::string, std::string>::iterator it = this->parameters.find(INPUT_IMAGE_NAME);
 	if (it != this->parameters.end())
 	{
-		*inputNameRef = it->second;
+		if (inputNameRef != 0)
+		{
+			*inputNameRef = it->second;
+		}
 	}
 	return (it != this->parameters.end());
 }
@@ -118,7 +108,10 @@ bool ParametersManager::outputFileName(std::string *outputNameRef)
 	const std::map<const std::string, std::string>::iterator it = this->parameters.find(OUTPUT_FILE_NAME);
 	if (it != this->parameters.end())
 	{
-		*outputNameRef = it->second;
+		if (outputNameRef != 0)
+		{
+			*outputNameRef = it->second;
+		}
 	}
 	return (it != this->parameters.end());
 }
@@ -133,7 +126,15 @@ bool ParametersManager::unknownParameter(std::string *parameterRef)
 	const std::map<const std::string, std::string>::iterator it = this->parameters.find(UNKNOWN_PARAMETER);
 	if (it != this->parameters.end())
 	{
-		*parameterRef = it->second;
+		if (parameterRef != 0)
+		{
+			*parameterRef = it->second;
+		}
 	}
 	return (it != this->parameters.end());
+}
+
+bool ParametersManager::inputVideoWasDemanded() const
+{
+	return (this->parameters.find(INPUT_VIDEO) != this->parameters.end());
 }

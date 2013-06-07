@@ -11,21 +11,22 @@
 
 #include <iostream>
 
-struct Point
+struct ASCII_Point
 {
 	int x;
 	int y;
 	
-	Point(int x_, int y_) : x(x_), y(y_) {}
+	ASCII_Point(int x_, int y_) : x(x_), y(y_) {}
 };
 
-struct Size
+struct ASCII_Size
 {
 	int width;
 	int height;
 	
-	Size(int width_, int height_) : width(width_), height(height_) {}
+	ASCII_Size(int width_, int height_) : width(width_), height(height_) {}
 };
+
 
 struct RegionOpacity
 {

@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MacASCIIArtVideo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1977ACBC176216FA00629032</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>19F8DB961761085200C28FC9</key>
 		<dict>
 			<key>primary</key>

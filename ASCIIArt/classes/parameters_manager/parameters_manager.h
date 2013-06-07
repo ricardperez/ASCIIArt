@@ -18,10 +18,12 @@ private:
 	std::map<const std::string, std::string> parameters;
 	bool argumentIsAKey(const std::string &argument) const;
 	bool argumentIsHelp(const std::string &argument) const;
+	bool argumentIsInputVideo(const std::string &argument) const;
 	const std::string parametersKeyForKeyArgument(const std::string &argument) const;
 public:
 	static const std::string INPUT_IMAGE_NAME;
 	static const std::string OUTPUT_FILE_NAME;
+	static const std::string INPUT_VIDEO;
 	static const std::string HELP_DEMANDED;
 	static const std::string UNKNOWN_PARAMETER;
 	
@@ -30,6 +32,7 @@ public:
 	bool inputImageName(std::string *inputNameRef);
 	bool outputFileName(std::string *outputNameRef);
 	bool helpWasDemanded() const;
+	bool inputVideoWasDemanded() const;
 	bool unknownParameter(std::string *parameterRef);
 };
 

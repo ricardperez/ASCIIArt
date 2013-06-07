@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19F8DB961761085200C28FC9"
-               BuildableName = "ASCIIArt"
-               BlueprintName = "ASCIIArt"
+               BlueprintIdentifier = "1977ACBC176216FA00629032"
+               BuildableName = "MacASCIIArtVideo.app"
+               BlueprintName = "MacASCIIArtVideo"
                ReferencedContainer = "container:ASCIIArt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19F8DB961761085200C28FC9"
-            BuildableName = "ASCIIArt"
-            BlueprintName = "ASCIIArt"
+            BlueprintIdentifier = "1977ACBC176216FA00629032"
+            BuildableName = "MacASCIIArtVideo.app"
+            BlueprintName = "MacASCIIArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,26 +51,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19F8DB961761085200C28FC9"
-            BuildableName = "ASCIIArt"
-            BlueprintName = "ASCIIArt"
+            BlueprintIdentifier = "1977ACBC176216FA00629032"
+            BuildableName = "MacASCIIArtVideo.app"
+            BlueprintName = "MacASCIIArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-input /Users/ricardperez/Desktop/homer.jpg"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-camera"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-output /Users/ricardperez/Desktop/ascii.txt"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -83,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "19F8DB961761085200C28FC9"
-            BuildableName = "ASCIIArt"
-            BlueprintName = "ASCIIArt"
+            BlueprintIdentifier = "1977ACBC176216FA00629032"
+            BuildableName = "MacASCIIArtVideo.app"
+            BlueprintName = "MacASCIIArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
