@@ -3,7 +3,32 @@
 //  ASCIIArt
 //
 //  Created by Ricard Pérez del Campo on 06/06/13.
-//  Copyright (c) 2013 Ricard Pérez del Campo. All rights reserved.
+//  Copyright (c) 2013, Ricard Pérez del Campo
+//  All rights reserved.
+//  
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met: 
+//  
+//  1. Redistributions of source code must retain the above copyright notice, this
+//     list of conditions and the following disclaimer. 
+//  2. Redistributions in binary form must reproduce the above copyright notice,
+//     this list of conditions and the following disclaimer in the documentation
+//     and/or other materials provided with the distribution. 
+//  
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//  
+//  The views and conclusions contained in the software and documentation are those
+//  of the authors and should not be interpreted as representing official policies, 
+//  either expressed or implied, of the FreeBSD Project.
 //
 
 #include <iostream>
@@ -21,6 +46,9 @@ int main(int argc, const char * argv[])
 	std::string inputImageName, outputFileName, unknownParameter;
 	ParametersManager paramsManager(argc, argv);
 	
+	int nRows = -1;
+	int nColumns = -1;
+	
 	if (paramsManager.helpWasDemanded())
 	{
 		displayHelp();
@@ -30,6 +58,9 @@ int main(int argc, const char * argv[])
 		bool imageGiven = false;
 		bool outputFileGiven = false;
 		bool cameraInputDemanded = false;
+		
+		paramsManager.nRows(nRows);
+		paramsManager.nColumns(nColumns);
 		
 		if (paramsManager.unknownParameter(&unknownParameter))
 		{
@@ -65,7 +96,7 @@ int main(int argc, const char * argv[])
 			std::string frameStr;
 			while (1)
 			{
-				cameraToASCII.currentFrameASCII(frameStr);
+				cameraToASCII.currentFrameASCII(frameStr, nRows, nColumns);
 				std::cout << frameStr << std::endl;
 				frameStr.clear();
 			}
@@ -75,7 +106,7 @@ int main(int argc, const char * argv[])
 			clock_t startClock = clock();
 			ASCIIArt asciiArt;
 			cv::Mat resultImage;
-			std::string *strImageRepresentation = asciiArt.newASCIIArtStringForImageName(inputImageName, resultImage);
+			std::string *strImageRepresentation = asciiArt.newASCIIArtStringForImageName(inputImageName, resultImage, nRows, nColumns);
 			clock_t endClock = clock();
 			
 			
@@ -106,6 +137,8 @@ void displayHelp()
 	std::cout << "    -input input_image" << " <- to use that image as input" << std::endl;
 	std::cout << "    -output output_file" << " <- to write the ascii characters to that file" << std::endl;
 	std::cout << "    -camera" << " <- to get a realtime ascii representation of the camera input" << std::endl;
+	std::cout << "    -rows nRows" << " <- to specify the number of rows to use" << std::endl;
+	std::cout << "    -columns nColumns" << " <- to specify the number of columns to use" << std::endl;
 	std::cout << "    -help" << " <- to display this help menu" << std::endl;
 }
 

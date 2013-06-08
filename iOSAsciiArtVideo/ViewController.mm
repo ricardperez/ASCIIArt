@@ -3,15 +3,43 @@
 //  iOSAsciiArtVideo
 //
 //  Created by Ricard Pérez del Campo on 07/06/13.
-//  Copyright (c) 2013 Ricard Pérez del Campo. All rights reserved.
+//  Copyright (c) 2013, Ricard Pérez del Campo
+//  All rights reserved.
+//  
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met: 
+//  
+//  1. Redistributions of source code must retain the above copyright notice, this
+//     list of conditions and the following disclaimer. 
+//  2. Redistributions in binary form must reproduce the above copyright notice,
+//     this list of conditions and the following disclaimer in the documentation
+//     and/or other materials provided with the distribution. 
+//  
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//  
+//  The views and conclusions contained in the software and documentation are those
+//  of the authors and should not be interpreted as representing official policies, 
+//  either expressed or implied, of the FreeBSD Project.
 //
 
 #import "ViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import <ImageIO/ImageIO.h>
 #include "ascii_art.h"
+#import "UIImage+CVMat.h"
 
 #define CAPTURE_FRAMES_PER_SECOND		20
+#define KEY_SAVE_IMAGES_TO_CAMERA_ROLL	@"__k_save_images_camera_roll__"
+#define KEY_COPY_TEXT_TO_CLIPBOARD		@"__k_copy_text_to_clipboard__"
 
 @interface ViewController ()
 {
@@ -21,6 +49,12 @@
 @property (nonatomic, retain) AVCaptureDeviceInput *frontCameraDeviceInput;
 @property (nonatomic, retain) AVCaptureDeviceInput *backCameraDeviceInput;
 @property (nonatomic, assign, getter = isBackCamera) BOOL backCamera;
+@property (nonatomic, assign, getter = isShowingOptions) BOOL showingOptions;
+@property (nonatomic, assign) UIImageView *movingView;
+@property (nonatomic, assign) NSInteger nRows;
+@property (nonatomic, assign) NSInteger nColumns;
+
+- (void)panGestureRecognizerAction:(UIPanGestureRecognizer *)panGestureRecognizer;
 
 @end
 
@@ -29,13 +63,36 @@
 
 - (void)dealloc
 {
+	[self.cameraContainerView removeGestureRecognizer:self.panGestureRecognizer];
+	[_panGestureRecognizer release];
+	
+	[_cameraContainerView release];
 	[_imageTextRepresentationLabel release];
+	[_originalImageView release];
+	[_usedImageView release];
+	[_controlsContainerView release];
+	[_controlsBackgroundImageView release];
 	[_flipCameraButton release];
+	[_takePhotoButton release];
+	[_cameraOptionsButton release];
+	[_controlsOptionsContainerView release];
+	[_controlsOptionsBackgroundImageView release];
+	[_saveImageSwitch release];
+	[_saveImageLabel release];
+	[_copyTextToClipboardSwitch release];
+	[_copyTextToClipboardLabel release];
+	[_showOriginalImageSwitch release];
+	[_showOriginalImageLabel release];
+	[_showUsedImageSwitch release];
+	[_showUsedImageLabel release];
+	[_fontSizeLabel release];
+	[_fontSizeSlider release];
+	
 	[_session release];
 	[_frontCameraDeviceInput release];
 	[_backCameraDeviceInput release];
-	[_debugImageView release];
 	
+	AudioServicesDisposeSystemSoundID(self.cameraSoundID);
 	delete imageToTextConversor;
 	
 	[super dealloc];
@@ -47,21 +104,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload
-{
-	[super viewDidUnload];
-	
-	self.imageTextRepresentationLabel = nil;
-	self.flipCameraButton = nil;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	imageToTextConversor = new ASCIIArt();
 	
-	[self setupCaptureSession];
-		
+	self.panGestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerAction:)] autorelease];
+	self.panGestureRecognizer.delegate = self;
+	[self.cameraContainerView addGestureRecognizer:self.panGestureRecognizer];
+	
+	NSNumber *saveImages = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SAVE_IMAGES_TO_CAMERA_ROLL];
+	NSNumber *copyText = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_COPY_TEXT_TO_CLIPBOARD];
+	
+	[self.saveImageSwitch setOn:((saveImages == nil) || [saveImages boolValue])];
+	[self.copyTextToClipboardSwitch setOn:((copyText == nil) || [copyText boolValue])];
+	
+	NSURL *correctSoundURL = [[NSBundle mainBundle] URLForResource:@"camera_sound" withExtension:@"wav"];
+	AudioServicesCreateSystemSoundID((CFURLRef)correctSoundURL, &_cameraSoundID);
+	
+	[self.usedImageView setHidden:YES];
+	[self.showUsedImageSwitch setOn:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -69,6 +131,16 @@
 	return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self canvasSizeForFontSize:self.fontSizeSlider.value nRows:_nRows nColumns:_nColumns];
+	[self setupCaptureSession];
+}
+
+
+#pragma mark - IBActions
 - (IBAction)flipCameraActionAction:(id)sender
 {
 	if ([self isBackCamera])
@@ -90,8 +162,106 @@
 	self.backCamera = ![self isBackCamera];
 }
 
+- (IBAction)takePhotoAction:(id)sender
+{
+	if ([self.copyTextToClipboardSwitch isOn])
+	{
+		UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+		pasteboard.string = [self.imageTextRepresentationLabel text];
+	}
+	if ([self.saveImageSwitch isOn])
+	{
+		UIGraphicsBeginImageContext(self.imageTextRepresentationLabel.bounds.size);
+		[self.imageTextRepresentationLabel.layer renderInContext:UIGraphicsGetCurrentContext()];
+		
+		UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+		
+		UIGraphicsEndImageContext();
+		
+		UIImageWriteToSavedPhotosAlbum(img, nil, NULL, NULL);
+	}
+	
+	if ([self.copyTextToClipboardSwitch isOn] || [self.saveImageSwitch isOn])
+	{
+		AudioServicesPlaySystemSound(self.cameraSoundID);
+	}
+}
+
+- (IBAction)cameraOptionsAction:(id)sender
+{
+	CGRect controlsContainerFrame = self.controlsContainerView.frame;
+	self.showingOptions = (![self isShowingOptions]);
+	if ([self isShowingOptions])
+	{
+		controlsContainerFrame.origin.y = (self.view.frame.size.height - controlsContainerFrame.size.height);
+	} else
+	{
+		controlsContainerFrame.origin.y = (self.view.frame.size.height - self.controlsOptionsContainerView.frame.origin.y);
+	}
+	[UIView animateWithDuration:0.2 animations:^{
+		self.controlsContainerView.frame = controlsContainerFrame;
+	}];
+}
+
+- (IBAction)saveImageSwitchAction:(id)sender
+{
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:([self.saveImageSwitch isOn])] forKey:KEY_SAVE_IMAGES_TO_CAMERA_ROLL];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)copyTextToClipboardSwitchAction:(id)sender
+{
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:([self.copyTextToClipboardSwitch isOn])] forKey:KEY_COPY_TEXT_TO_CLIPBOARD];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)showOriginalImageSwitchAction:(id)sender
+{
+	[self.originalImageView setHidden:(!([self.showOriginalImageSwitch isOn]))];
+	if ([self.showOriginalImageSwitch isOn])
+	{
+		BOOL isHalfLeft = ((self.originalImageView.frame.origin.x + self.originalImageView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+		BOOL isHalfTop = ((self.originalImageView.frame.origin.y + self.originalImageView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+		
+		BOOL otherIsHalfLeft = ((self.usedImageView.frame.origin.x + self.usedImageView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+		BOOL otherIsHalfTop = ((self.usedImageView.frame.origin.y + self.usedImageView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+		
+		if ((isHalfLeft == otherIsHalfLeft) && (isHalfTop == otherIsHalfTop))
+		{
+			CGFloat xPos = (isHalfLeft ? self.cameraContainerView.frame.size.width-self.originalImageView.frame.size.width : 0.0f);
+			[self.originalImageView setFrame:CGRectMake(xPos, 0.0f, self.originalImageView.frame.size.width, self.originalImageView.frame.size.height)];
+		}
+	}
+}
+
+- (IBAction)showUsedImageSwitchAction:(id)sender
+{
+	[self.usedImageView setHidden:(!([self.showUsedImageSwitch isOn]))];
+	if ([self.showUsedImageSwitch isOn])
+	{
+		BOOL isHalfLeft = ((self.usedImageView.frame.origin.x + self.usedImageView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+		BOOL isHalfTop = ((self.usedImageView.frame.origin.y + self.usedImageView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+		
+		BOOL otherIsHalfLeft = ((self.originalImageView.frame.origin.x + self.originalImageView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+		BOOL otherIsHalfTop = ((self.originalImageView.frame.origin.y + self.originalImageView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+		
+		if ((isHalfLeft == otherIsHalfLeft) && (isHalfTop == otherIsHalfTop))
+		{
+			CGFloat xPos = (isHalfLeft ? self.cameraContainerView.frame.size.width-self.usedImageView.frame.size.width : 0.0f);
+			[self.usedImageView setFrame:CGRectMake(xPos, 0.0f, self.usedImageView.frame.size.width, self.usedImageView.frame.size.height)];
+		}
+	}
+}
+
+- (IBAction)fontSizeSliderAction:(id)sender
+{
+	[self.imageTextRepresentationLabel setFont:[UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:self.fontSizeSlider.value]];
+	[self canvasSizeForFontSize:self.fontSizeSlider.value nRows:_nRows nColumns:_nColumns];
+	[self.fontSizeLabel setText:[NSString stringWithFormat:@"Font size: %.1f", self.fontSizeSlider.value]];
+}
 
 
+#pragma mark - AV setup
 // Create and configure a capture session and start it running
 - (void)setupCaptureSession
 {
@@ -171,41 +341,33 @@
 // Delegate routine that is called when a sample buffer was written
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-	cv::Mat capturedImage = [self imageCVMatFromSampleBuffer:sampleBuffer];
-	cv::Mat result;
-	std::string *asciiRepr = imageToTextConversor->newASCIIArtStringForImageMat(capturedImage, result, 30, 19);
+	UIImage *realImage = [self imageFromSampleBuffer:sampleBuffer];
+	cv::Mat capturedImage = [realImage CVMat];
+	
+	cv::transpose(capturedImage, capturedImage);
+	if ([self isBackCamera])
+	{
+		cv::flip(capturedImage, capturedImage, 1);
+	}
+	
+	std::string *asciiRepr = imageToTextConversor->newASCIIArtStringForImageMat(capturedImage, capturedImage, self.nRows, self.nColumns);
 	
 	NSString *string = [NSString stringWithCString:asciiRepr->c_str() encoding:NSUTF8StringEncoding];
-	UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
+	UIImage *usedImage = nil;
+	if (![self.usedImageView isHidden])
+	{
+		usedImage = [UIImage imageWithCVMat:capturedImage];
+	}
+	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[self.imageTextRepresentationLabel setText:string];
-		[self.debugImageView setImage:image];
+		[self.usedImageView setImage:usedImage];
+		[self.originalImageView setImage:realImage];
 	});
 	
 	delete asciiRepr;
 
 	
-}
-
-- (cv::Mat)imageCVMatFromSampleBuffer:(CMSampleBufferRef)sampleBuffer
-{
-	CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-	
-	CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
-	
-	int bufferWidth = CVPixelBufferGetWidth(pixelBuffer);
-	int bufferHeight = CVPixelBufferGetHeight(pixelBuffer);
-	unsigned char *pixel = (unsigned char *)CVPixelBufferGetBaseAddress(pixelBuffer);
-	cv::Mat image = cv::Mat(bufferHeight,bufferWidth,CV_8UC4,pixel); //put buffer in open cv, no memory copied
-	//Processing here
-	
-	//End processing
-	CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
-	
-//	cvTranspose(&image, &image);
-	cv::transpose(image, image);
-	
-	return image;
 }
 
 - (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
@@ -246,6 +408,131 @@
     CGImageRelease(quartzImage);
 	
     return (image);
+}
+
+
+#pragma mark - UIGestureRecognizer
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+	return (![self.originalImageView isHidden] || ![self.usedImageView isHidden]);
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+	return (CGRectContainsPoint(self.originalImageView.frame, [touch locationInView:self.cameraContainerView]) ||
+			CGRectContainsPoint(self.usedImageView.frame, [touch locationInView:self.cameraContainerView]));
+}
+
+#pragma mark - UIPanGestureRecognizer
+- (void)panGestureRecognizerAction:(UIPanGestureRecognizer *)panGestureRecognizer
+{
+	if (panGestureRecognizer.state == UIGestureRecognizerStateBegan)
+	{
+		if (CGRectContainsPoint(self.originalImageView.frame, [panGestureRecognizer locationInView:self.cameraContainerView]))
+		{
+			self.movingView = self.originalImageView;
+		} else if (CGRectContainsPoint(self.usedImageView.frame, [panGestureRecognizer locationInView:self.cameraContainerView]))
+		{
+			self.movingView = self.usedImageView;
+		}
+		if (self.movingView != nil)
+		{
+			[self.movingView.superview bringSubviewToFront:self.movingView];
+		}
+	} else if (panGestureRecognizer.state == UIGestureRecognizerStateChanged)
+	{
+		if (self.movingView != nil)
+		{
+			CGPoint position = [panGestureRecognizer locationInView:self.cameraContainerView];
+			[self.movingView setFrame:CGRectMake(position.x-self.movingView.frame.size.width*0.5f, position.y-self.movingView.frame.size.height*0.5f, self.movingView.frame.size.width, self.movingView.frame.size.height)];
+		}
+	} else
+	{
+		if (self.movingView != nil)
+		{
+			UIView *otherView = ((self.movingView == self.usedImageView) ? self.originalImageView : self.usedImageView);
+			BOOL otherVisible = (![otherView isHidden]);
+			CGPoint destinyPoint;
+			
+			BOOL movingIsHalfLeft = ((self.movingView.frame.origin.x + self.movingView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+			BOOL movingIsHalfTop = ((self.movingView.frame.origin.y + self.movingView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+			
+			BOOL otherIsHalfLeft = ((otherView.frame.origin.x + otherView.frame.size.width*0.5f) < (self.cameraContainerView.frame.size.width*0.5f));
+			BOOL otherIsHalfTop = ((otherView.frame.origin.y + otherView.frame.size.height*0.5f) < (self.cameraContainerView.frame.size.height*0.5f));
+			
+			if (movingIsHalfLeft)
+			{
+				if (movingIsHalfTop)
+				{
+					if (otherVisible && otherIsHalfLeft && otherIsHalfTop)
+					{
+						destinyPoint = CGPointMake(0.0f, self.cameraContainerView.frame.size.height - self.movingView.frame.size.height);
+					} else
+					{
+						destinyPoint = CGPointMake(0.0f, 0.0f);
+					}
+				} else
+				{
+					if (otherVisible && otherIsHalfLeft && !otherIsHalfTop)
+					{
+						destinyPoint = CGPointMake(0.0f, 0.0f);
+					} else
+					{
+						destinyPoint = CGPointMake(0.0f, self.cameraContainerView.frame.size.height - self.movingView.frame.size.height);
+					}
+				}
+			} else
+			{
+				if (movingIsHalfTop)
+				{
+					if (otherVisible && !otherIsHalfLeft && otherIsHalfTop)
+					{
+						destinyPoint = CGPointMake(self.cameraContainerView.frame.size.width - self.movingView.frame.size.width, self.cameraContainerView.frame.size.height - self.movingView.frame.size.height);
+					} else
+					{
+						destinyPoint = CGPointMake(self.cameraContainerView.frame.size.width - self.movingView.frame.size.width, 0.0f);
+					}
+				} else
+				{
+					if (otherVisible && !otherIsHalfLeft && !otherIsHalfTop)
+					{
+						destinyPoint = CGPointMake(self.cameraContainerView.frame.size.width - self.movingView.frame.size.width, 0.0f);
+					} else
+					{
+						destinyPoint = CGPointMake(self.cameraContainerView.frame.size.width - self.movingView.frame.size.width, self.cameraContainerView.frame.size.height - self.movingView.frame.size.height);
+					}
+				}
+			}
+			[UIView animateWithDuration:0.2 animations:^{
+				[self.movingView setFrame:CGRectMake(destinyPoint.x, destinyPoint.y, self.movingView.frame.size.width, self.movingView.frame.size.height)];
+			}];
+		}
+		self.movingView = nil;
+	}
+}
+
+- (void)canvasSizeForFontSize:(float)fontSize nRows:(int &)nRows nColumns:(int &)nColumns
+{
+	UIFont *font = [UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:fontSize];
+	CGSize oneCharSize = [@"X" sizeWithFont:font];
+	
+	int nChars = 1;
+	NSMutableString *string = [NSMutableString stringWithString:@"X"];
+	CGSize constrainedSize = CGSizeMake(self.imageTextRepresentationLabel.frame.size.width, FLT_MAX);
+	BOOL sameLine = YES;
+	while (sameLine)
+	{
+		[string appendString:@" X"];
+		CGFloat requiredHeight = [string sizeWithFont:font constrainedToSize:constrainedSize].height;
+		sameLine = (ABS(requiredHeight - oneCharSize.height) < 0.00001f);
+		if (sameLine)
+		{
+			++nChars;
+		}
+	}
+	
+	nRows = (self.imageTextRepresentationLabel.frame.size.height / oneCharSize.height);
+	nColumns = nChars;
 }
 
 @end

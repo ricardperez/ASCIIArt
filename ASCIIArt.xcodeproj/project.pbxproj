@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		194F7721176322B000DC7FA5 /* camera_controls_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F771E176322B000DC7FA5 /* camera_controls_background.png */; };
+		194F7722176322B000DC7FA5 /* camera_flip_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F771F176322B000DC7FA5 /* camera_flip_button.png */; };
+		194F7723176322B000DC7FA5 /* camera_take_photo_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F7720176322B000DC7FA5 /* camera_take_photo_button.png */; };
+		194F77251763256600DC7FA5 /* camera_options_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F77241763256600DC7FA5 /* camera_options_button.png */; };
+		194F77271763282A00DC7FA5 /* camera_options_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F77261763282A00DC7FA5 /* camera_options_background.png */; };
+		194F772A17632F8100DC7FA5 /* camera_sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 194F772917632F8100DC7FA5 /* camera_sound.wav */; };
+		194F772C17632FD200DC7FA5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194F772B17632FD200DC7FA5 /* AudioToolbox.framework */; };
+		194F77301763738000DC7FA5 /* icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F772D1763738000DC7FA5 /* icon-512.png */; };
+		194F77311763738000DC7FA5 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F772E1763738000DC7FA5 /* icon@2x.png */; };
+		194F77321763738000DC7FA5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F772F1763738000DC7FA5 /* icon.png */; };
 		195805F517628DA5004DEE8B /* UIImage+CVMat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 195805F417628DA5004DEE8B /* UIImage+CVMat.mm */; };
 		195805F717629F98004DEE8B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195805F617629F98004DEE8B /* CoreVideo.framework */; };
-		195805F91762A32D004DEE8B /* camera_flip_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 195805F81762A32D004DEE8B /* camera_flip_button.png */; };
 		1977AC831761F0FA00629032 /* camera_to_ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */; };
 		1977ACC0176216FA00629032 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACBF176216FA00629032 /* Cocoa.framework */; };
 		1977ACCA176216FB00629032 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACC8176216FB00629032 /* InfoPlist.strings */; };
@@ -80,10 +89,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		194F771E176322B000DC7FA5 /* camera_controls_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_controls_background.png; sourceTree = "<group>"; };
+		194F771F176322B000DC7FA5 /* camera_flip_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_flip_button.png; sourceTree = "<group>"; };
+		194F7720176322B000DC7FA5 /* camera_take_photo_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_take_photo_button.png; sourceTree = "<group>"; };
+		194F77241763256600DC7FA5 /* camera_options_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_options_button.png; sourceTree = "<group>"; };
+		194F77261763282A00DC7FA5 /* camera_options_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_options_background.png; sourceTree = "<group>"; };
+		194F772917632F8100DC7FA5 /* camera_sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = camera_sound.wav; sourceTree = "<group>"; };
+		194F772B17632FD200DC7FA5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		194F772D1763738000DC7FA5 /* icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-512.png"; sourceTree = "<group>"; };
+		194F772E1763738000DC7FA5 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		194F772F1763738000DC7FA5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		195805F317628DA5004DEE8B /* UIImage+CVMat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CVMat.h"; sourceTree = "<group>"; };
 		195805F417628DA5004DEE8B /* UIImage+CVMat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+CVMat.mm"; sourceTree = "<group>"; };
 		195805F617629F98004DEE8B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
-		195805F81762A32D004DEE8B /* camera_flip_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera_flip_button.png; path = ../../../../Desktop/camera_flip_button.png; sourceTree = "<group>"; };
 		1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera_to_ascii_art.cpp; sourceTree = "<group>"; };
 		1977AC821761F0FA00629032 /* camera_to_ascii_art.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_to_ascii_art.h; sourceTree = "<group>"; };
 		1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacASCIIArtVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +121,7 @@
 		1977ACE2176217E800629032 /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		1977ACE8176220F900629032 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
 		1977ACE9176220F900629032 /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functions.h; sourceTree = "<group>"; };
-		1977ACF01762313600629032 /* iOSAsciiArtVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAsciiArtVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1977ACF01762313600629032 /* ASCII Cam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ASCII Cam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1977ACF11762313600629032 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1977ACF31762313600629032 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		1977ACF51762313600629032 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				194F772C17632FD200DC7FA5 /* AudioToolbox.framework in Frameworks */,
 				195805F717629F98004DEE8B /* CoreVideo.framework in Frameworks */,
 				1977AD34176245FD00629032 /* ImageIO.framework in Frameworks */,
 				1977AD3217623F4600629032 /* CoreMedia.framework in Frameworks */,
@@ -186,6 +205,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194F771D176322B000DC7FA5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				194F772D1763738000DC7FA5 /* icon-512.png */,
+				194F772E1763738000DC7FA5 /* icon@2x.png */,
+				194F772F1763738000DC7FA5 /* icon.png */,
+				194F771E176322B000DC7FA5 /* camera_controls_background.png */,
+				194F77261763282A00DC7FA5 /* camera_options_background.png */,
+				194F771F176322B000DC7FA5 /* camera_flip_button.png */,
+				194F7720176322B000DC7FA5 /* camera_take_photo_button.png */,
+				194F77241763256600DC7FA5 /* camera_options_button.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		194F772817632F8100DC7FA5 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				194F772917632F8100DC7FA5 /* camera_sound.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		195805F217628D60004DEE8B /* ImageBridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +249,7 @@
 		1977ACBE176216FA00629032 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				194F772B17632FD200DC7FA5 /* AudioToolbox.framework */,
 				195805F617629F98004DEE8B /* CoreVideo.framework */,
 				1977AD33176245FD00629032 /* ImageIO.framework */,
 				1977AD3117623F4600629032 /* CoreMedia.framework */,
@@ -264,6 +307,8 @@
 				1977AD091762313600629032 /* ViewController.h */,
 				1977AD0A1762313600629032 /* ViewController.mm */,
 				1977AD0C1762313600629032 /* ViewController.xib */,
+				194F771D176322B000DC7FA5 /* images */,
+				194F772817632F8100DC7FA5 /* sounds */,
 				1977AD1E1762332700629032 /* frameworks */,
 				1977ACF81762313600629032 /* Supporting Files */,
 			);
@@ -276,7 +321,6 @@
 				1977ACF91762313600629032 /* iOSAsciiArtVideo-Info.plist */,
 				1977ACFA1762313600629032 /* InfoPlist.strings */,
 				1977ACFD1762313600629032 /* main.m */,
-				195805F81762A32D004DEE8B /* camera_flip_button.png */,
 				1977ACFF1762313600629032 /* iOSAsciiArtVideo-Prefix.pch */,
 				1977AD031762313600629032 /* Default.png */,
 				1977AD051762313600629032 /* Default@2x.png */,
@@ -309,7 +353,7 @@
 			children = (
 				19F8DB971761085200C28FC9 /* ASCIIArt */,
 				1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */,
-				1977ACF01762313600629032 /* iOSAsciiArtVideo.app */,
+				1977ACF01762313600629032 /* ASCII Cam.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -472,7 +516,7 @@
 			);
 			name = iOSAsciiArtVideo;
 			productName = iOSAsciiArtVideo;
-			productReference = 1977ACF01762313600629032 /* iOSAsciiArtVideo.app */;
+			productReference = 1977ACF01762313600629032 /* ASCII Cam.app */;
 			productType = "com.apple.product-type.application";
 		};
 		19F8DB961761085200C28FC9 /* ASCIIArt */ = {
@@ -540,7 +584,15 @@
 				1977AD061762313600629032 /* Default@2x.png in Resources */,
 				1977AD081762313600629032 /* Default-568h@2x.png in Resources */,
 				1977AD0E1762313600629032 /* ViewController.xib in Resources */,
-				195805F91762A32D004DEE8B /* camera_flip_button.png in Resources */,
+				194F7721176322B000DC7FA5 /* camera_controls_background.png in Resources */,
+				194F7722176322B000DC7FA5 /* camera_flip_button.png in Resources */,
+				194F7723176322B000DC7FA5 /* camera_take_photo_button.png in Resources */,
+				194F77251763256600DC7FA5 /* camera_options_button.png in Resources */,
+				194F77271763282A00DC7FA5 /* camera_options_background.png in Resources */,
+				194F772A17632F8100DC7FA5 /* camera_sound.wav in Resources */,
+				194F77301763738000DC7FA5 /* icon-512.png in Resources */,
+				194F77311763738000DC7FA5 /* icon@2x.png in Resources */,
+				194F77321763738000DC7FA5 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +746,7 @@
 				INFOPLIST_FILE = "iOSAsciiArtVideo/iOSAsciiArtVideo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ASCII Cam";
 				PROVISIONING_PROFILE = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
 				SDKROOT = iphoneos;
@@ -721,7 +773,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ASCII Cam";
 				PROVISIONING_PROFILE = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
 				SDKROOT = iphoneos;
