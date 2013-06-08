@@ -4,31 +4,19 @@
 //
 //  Created by Ricard Pérez del Campo on 07/06/13.
 //  Copyright (c) 2013, Ricard Pérez del Campo
-//  All rights reserved.
-//  
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met: 
-//  
-//  1. Redistributions of source code must retain the above copyright notice, this
-//     list of conditions and the following disclaimer. 
-//  2. Redistributions in binary form must reproduce the above copyright notice,
-//     this list of conditions and the following disclaimer in the documentation
-//     and/or other materials provided with the distribution. 
-//  
-//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//  
-//  The views and conclusions contained in the software and documentation are those
-//  of the authors and should not be interpreted as representing official policies, 
-//  either expressed or implied, of the FreeBSD Project.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "ViewController.h"
@@ -79,8 +67,8 @@
 	[_controlsOptionsBackgroundImageView release];
 	[_saveImageSwitch release];
 	[_saveImageLabel release];
-	[_copyTextToClipboardSwitch release];
-	[_copyTextToClipboardLabel release];
+	[_setTextToClipboardSwitch release];
+	[_setTextToClipboardLabel release];
 	[_showOriginalImageSwitch release];
 	[_showOriginalImageLabel release];
 	[_showUsedImageSwitch release];
@@ -117,7 +105,7 @@
 	NSNumber *copyText = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_COPY_TEXT_TO_CLIPBOARD];
 	
 	[self.saveImageSwitch setOn:((saveImages == nil) || [saveImages boolValue])];
-	[self.copyTextToClipboardSwitch setOn:((copyText == nil) || [copyText boolValue])];
+	[self.setTextToClipboardSwitch setOn:((copyText == nil) || [copyText boolValue])];
 	
 	NSURL *correctSoundURL = [[NSBundle mainBundle] URLForResource:@"camera_sound" withExtension:@"wav"];
 	AudioServicesCreateSystemSoundID((CFURLRef)correctSoundURL, &_cameraSoundID);
@@ -164,7 +152,7 @@
 
 - (IBAction)takePhotoAction:(id)sender
 {
-	if ([self.copyTextToClipboardSwitch isOn])
+	if ([self.setTextToClipboardSwitch isOn])
 	{
 		UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
 		pasteboard.string = [self.imageTextRepresentationLabel text];
@@ -181,7 +169,7 @@
 		UIImageWriteToSavedPhotosAlbum(img, nil, NULL, NULL);
 	}
 	
-	if ([self.copyTextToClipboardSwitch isOn] || [self.saveImageSwitch isOn])
+	if ([self.setTextToClipboardSwitch isOn] || [self.saveImageSwitch isOn])
 	{
 		AudioServicesPlaySystemSound(self.cameraSoundID);
 	}
@@ -209,9 +197,9 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (IBAction)copyTextToClipboardSwitchAction:(id)sender
+- (IBAction)setTextToClipboardSwitchAction:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:([self.copyTextToClipboardSwitch isOn])] forKey:KEY_COPY_TEXT_TO_CLIPBOARD];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:([self.setTextToClipboardSwitch isOn])] forKey:KEY_COPY_TEXT_TO_CLIPBOARD];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -261,6 +249,20 @@
 }
 
 
+- (IBAction)matrixModeSwitchAction:(id)sender
+{
+	if ([self.matrixModeSwitch isOn])
+	{
+		[self.imageTextRepresentationLabel setBackgroundColor:[UIColor blackColor]];
+		[self.imageTextRepresentationLabel setTextColor:[UIColor greenColor]];
+	} else
+	{
+		[self.imageTextRepresentationLabel setBackgroundColor:[UIColor whiteColor]];
+		[self.imageTextRepresentationLabel setTextColor:[UIColor blackColor]];
+	}
+}
+
+
 #pragma mark - AV setup
 // Create and configure a capture session and start it running
 - (void)setupCaptureSession
@@ -273,7 +275,8 @@
     // Configure the session to produce lower resolution video frames, if your
     // processing algorithm can cope. We'll specify medium quality for the
     // chosen device.
-    session.sessionPreset = AVCaptureSessionPresetLow;
+//	session.sessionPreset = AVCaptureSessionPresetMedium;
+	session.sessionPreset = AVCaptureSessionPresetLow;
 	
     // Find a suitable AVCaptureDevice
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];

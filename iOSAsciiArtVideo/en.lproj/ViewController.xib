@@ -193,7 +193,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Opts</string>
+								<string key="IBUINormalTitle">Options</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -249,7 +249,7 @@
 									<object class="IBUIImageView" id="401751020">
 										<reference key="NSNextResponder" ref="515906264"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrameSize">{320, 205}</string>
+										<string key="NSFrameSize">{320, 241}</string>
 										<reference key="NSSuperview" ref="515906264"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="300461316"/>
@@ -399,7 +399,7 @@
 										<string key="NSFrame">{{105, 166}, {195, 21}}</string>
 										<reference key="NSSuperview" ref="515906264"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
+										<reference key="NSNextKeyView" ref="69097512"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -428,7 +428,7 @@
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
 										<float key="IBUIValue">7</float>
-										<float key="IBUIMinValue">5</float>
+										<float key="IBUIMinValue">4</float>
 										<float key="IBUIMaxValue">16</float>
 									</object>
 									<object class="IBUILabel" id="300461316">
@@ -453,8 +453,43 @@
 										<reference key="IBUIFont" ref="902039654"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
+									<object class="IBUISwitch" id="69097512">
+										<reference key="NSNextResponder" ref="515906264"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{5, 199}, {94, 27}}</string>
+										<reference key="NSSuperview" ref="515906264"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="137772073"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<bool key="IBUIOpaque">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<int key="IBUIContentHorizontalAlignment">0</int>
+										<int key="IBUIContentVerticalAlignment">0</int>
+									</object>
+									<object class="IBUILabel" id="137772073">
+										<reference key="NSNextResponder" ref="515906264"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{105, 202}, {195, 21}}</string>
+										<reference key="NSSuperview" ref="515906264"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<bool key="IBUIOpaque">NO</bool>
+										<bool key="IBUIClipsSubviews">YES</bool>
+										<int key="IBUIContentMode">7</int>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<string key="IBUIText">Matrix mode</string>
+										<reference key="IBUITextColor" ref="262501212"/>
+										<nil key="IBUIHighlightedColor"/>
+										<reference key="IBUIShadowColor" ref="4703364"/>
+										<int key="IBUIBaselineAdjustment">0</int>
+										<reference key="IBUIFontDescription" ref="595834225"/>
+										<reference key="IBUIFont" ref="902039654"/>
+										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+									</object>
 								</array>
-								<string key="NSFrame">{{0, 53}, {320, 205}}</string>
+								<string key="NSFrame">{{0, 53}, {320, 241}}</string>
 								<reference key="NSSuperview" ref="654002717"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="401751020"/>
@@ -471,7 +506,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 427}, {320, 258}}</string>
+						<string key="NSFrame">{{0, 427}, {320, 294}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="41113189"/>
@@ -586,22 +621,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">copyTextToClipboardLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="315416203"/>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">copyTextToClipboardSwitch</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="19437883"/>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">saveImageLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="848383208"/>
@@ -689,6 +708,38 @@
 					<int key="connectionID">76</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">setTextToClipboardSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="19437883"/>
+					</object>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">setTextToClipboardLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="315416203"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">matrixModeSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="69097512"/>
+					</object>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">matrixModeLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="137772073"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">flipCameraActionAction:</string>
 						<reference key="source" ref="443251478"/>
@@ -726,21 +777,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">copyTextToClipboardSwitchAction:</string>
+						<string key="label">setTextToClipboardSwitchAction:</string>
 						<reference key="source" ref="19437883"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">13</int>
 					</object>
-					<int key="connectionID">46</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">copyTextToClipboardSwitchAction:</string>
-						<reference key="source" ref="226046179"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">56</int>
+					<int key="connectionID">79</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -750,15 +792,6 @@
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">69</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">copyTextToClipboardSwitchAction:</string>
-						<reference key="source" ref="20314529"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">62</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -777,6 +810,15 @@
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">matrixModeSwitchAction:</string>
+						<reference key="source" ref="69097512"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">92</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -867,13 +909,15 @@
 							<reference ref="315416203"/>
 							<reference ref="848383208"/>
 							<reference ref="19437883"/>
-							<reference ref="763344425"/>
 							<reference ref="226046179"/>
 							<reference ref="903328999"/>
 							<reference ref="20314529"/>
 							<reference ref="935534709"/>
 							<reference ref="519036114"/>
 							<reference ref="300461316"/>
+							<reference ref="763344425"/>
+							<reference ref="137772073"/>
+							<reference ref="69097512"/>
 						</array>
 						<reference key="parent" ref="654002717"/>
 					</object>
@@ -937,6 +981,16 @@
 						<reference key="object" ref="300461316"/>
 						<reference key="parent" ref="515906264"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">87</int>
+						<reference key="object" ref="69097512"/>
+						<reference key="parent" ref="515906264"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">88</int>
+						<reference key="object" ref="137772073"/>
+						<reference key="parent" ref="515906264"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -967,12 +1021,14 @@
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="87.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="88.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">92</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -981,10 +1037,11 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cameraOptionsAction:">id</string>
-						<string key="copyTextToClipboardSwitchAction:">id</string>
 						<string key="flipCameraActionAction:">id</string>
 						<string key="fontSizeSliderAction:">id</string>
+						<string key="matrixModeSwitchAction:">id</string>
 						<string key="saveImageSwitchAction:">id</string>
+						<string key="setTextToClipboardSwitchAction:">id</string>
 						<string key="showOriginalImageSwitchAction:">id</string>
 						<string key="showUsedImageSwitchAction:">id</string>
 						<string key="takePhotoAction:">id</string>
@@ -992,10 +1049,6 @@
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cameraOptionsAction:">
 							<string key="name">cameraOptionsAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="copyTextToClipboardSwitchAction:">
-							<string key="name">copyTextToClipboardSwitchAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="flipCameraActionAction:">
@@ -1006,8 +1059,16 @@
 							<string key="name">fontSizeSliderAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="matrixModeSwitchAction:">
+							<string key="name">matrixModeSwitchAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="saveImageSwitchAction:">
 							<string key="name">saveImageSwitchAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setTextToClipboardSwitchAction:">
+							<string key="name">setTextToClipboardSwitchAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showOriginalImageSwitchAction:">
@@ -1030,15 +1091,17 @@
 						<string key="controlsContainerView">UIView</string>
 						<string key="controlsOptionsBackgroundImageView">UIImageView</string>
 						<string key="controlsOptionsContainerView">UIView</string>
-						<string key="copyTextToClipboardLabel">UILabel</string>
-						<string key="copyTextToClipboardSwitch">UISwitch</string>
 						<string key="flipCameraButton">UIButton</string>
 						<string key="fontSizeLabel">UILabel</string>
 						<string key="fontSizeSlider">UISlider</string>
 						<string key="imageTextRepresentationLabel">UILabel</string>
+						<string key="matrixModeLabel">UILabel</string>
+						<string key="matrixModeSwitch">UISwitch</string>
 						<string key="originalImageView">UIImageView</string>
 						<string key="saveImageLabel">UILabel</string>
 						<string key="saveImageSwitch">UISwitch</string>
+						<string key="setTextToClipboardLabel">UILabel</string>
+						<string key="setTextToClipboardSwitch">UISwitch</string>
 						<string key="showOriginalImageLabel">UILabel</string>
 						<string key="showOriginalImageSwitch">UISwitch</string>
 						<string key="showUsedImageLabel">UILabel</string>
@@ -1071,14 +1134,6 @@
 							<string key="name">controlsOptionsContainerView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="copyTextToClipboardLabel">
-							<string key="name">copyTextToClipboardLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="copyTextToClipboardSwitch">
-							<string key="name">copyTextToClipboardSwitch</string>
-							<string key="candidateClassName">UISwitch</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="flipCameraButton">
 							<string key="name">flipCameraButton</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1095,6 +1150,14 @@
 							<string key="name">imageTextRepresentationLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="matrixModeLabel">
+							<string key="name">matrixModeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="matrixModeSwitch">
+							<string key="name">matrixModeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="originalImageView">
 							<string key="name">originalImageView</string>
 							<string key="candidateClassName">UIImageView</string>
@@ -1105,6 +1168,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="saveImageSwitch">
 							<string key="name">saveImageSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="setTextToClipboardLabel">
+							<string key="name">setTextToClipboardLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="setTextToClipboardSwitch">
+							<string key="name">setTextToClipboardSwitch</string>
 							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="showOriginalImageLabel">

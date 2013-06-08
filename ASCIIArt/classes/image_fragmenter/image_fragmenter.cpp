@@ -4,31 +4,19 @@
 //
 //  Created by Ricard Pérez del Campo on 06/06/13.
 //  Copyright (c) 2013, Ricard Pérez del Campo
-//  All rights reserved.
-//  
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met: 
-//  
-//  1. Redistributions of source code must retain the above copyright notice, this
-//     list of conditions and the following disclaimer. 
-//  2. Redistributions in binary form must reproduce the above copyright notice,
-//     this list of conditions and the following disclaimer in the documentation
-//     and/or other materials provided with the distribution. 
-//  
-//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-//  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//  
-//  The views and conclusions contained in the software and documentation are those
-//  of the authors and should not be interpreted as representing official policies, 
-//  either expressed or implied, of the FreeBSD Project.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 #include "image_fragmenter.h"
@@ -80,13 +68,13 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 	float graysRange = (maxGray - minGray);
 	
 	
-	int nSteps = 6;
-	int minThreshold = 50;
-	int maxThreshold = 200;
+	int nSteps = 8;
+	int minThreshold = 30;
+	int maxThreshold = 225;
 	int step = ((maxThreshold-minThreshold) / nSteps);
 	
-	float alpha = 2.5f;
-	int beta = 1;
+	float alpha = 1.7f;
+	int beta = 30;
 	
 	for (int iRow=0; iRow<resultImage.rows; ++iRow)
 	{
@@ -139,8 +127,8 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 	int _nColumns = nColumns;
 
 	
-	int chunksWidth = (nColumns <= 0 ? 4 : (resultImage.cols / nColumns));
-	int chunksHeight = (nRows <= 0 ? 4 : (resultImage.rows / nRows));
+	int chunksWidth = (nColumns <= 0 ? 22 : (resultImage.cols / nColumns));
+	int chunksHeight = (nRows <= 0 ? 22 : (resultImage.rows / nRows));
 	
 	if (_nRows <= 0)
 	{
@@ -163,20 +151,52 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 		
 	}
 	
+	int remainingWidth = (resultImage.cols - chunksWidth*nColumns);
+	int remainingHeight = (resultImage.rows - chunksHeight*nRows);
+	
+	float cumulatedRemainingWidth = 0.0f;
+	float cumulatedRemainingHeight = 0.0f;
+	
+	float remainingWidthPerColumn = ((float)remainingWidth / nColumns);
+	float remainingHeightPerRow = ((float)remainingHeight / nRows);
 	
 	
 	ASCII_Size chunksSize(chunksWidth, chunksHeight);
 	
+	int r = 0;
 	std::vector<std::vector<RegionOpacity> > *rows = new std::vector<std::vector<RegionOpacity> >();
 	for (int iRow=0; iRow<nRows; ++iRow)
 	{
+		cumulatedRemainingHeight += remainingHeightPerRow;
+		if (cumulatedRemainingHeight >= 1.0f)
+		{
+			chunksSize.height = chunksHeight + (int)cumulatedRemainingHeight;
+			cumulatedRemainingHeight -= (int)cumulatedRemainingHeight;
+		} else
+		{
+			chunksSize.height = chunksHeight;
+		}
+		
+		int c = 0;
 		std::vector<RegionOpacity> row;
 		for (int iCol=0; iCol<nColumns; ++iCol)
 		{
-			RegionOpacity regionOpacity = this->getOpacityForRegionForImage((iRow*chunksHeight), (iCol*chunksWidth), chunksSize, resultImage);
+			cumulatedRemainingWidth += remainingWidthPerColumn;
+			if (cumulatedRemainingWidth >= 1.0f)
+			{
+				chunksSize.width = chunksWidth + (int)cumulatedRemainingWidth;
+				cumulatedRemainingWidth -= (int)cumulatedRemainingWidth;
+			} else
+			{
+				chunksSize.width = chunksWidth;
+			}
+			
+			RegionOpacity regionOpacity = this->getOpacityForRegionForImage(r, c, chunksSize, resultImage);
 			row.push_back(regionOpacity);
+			c += chunksSize.width;
 		}
 		rows->push_back(row);
+		r += chunksSize.height;
 	}
 	
 	NormalizeRegions(*rows);

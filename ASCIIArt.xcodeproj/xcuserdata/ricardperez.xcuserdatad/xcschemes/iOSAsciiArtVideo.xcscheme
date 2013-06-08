@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1977ACEF1762313600629032"
-               BuildableName = "iOSAsciiArtVideo.app"
+               BuildableName = "ASCII Camera.app"
                BlueprintName = "iOSAsciiArtVideo"
                ReferencedContainer = "container:ASCIIArt.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1977ACEF1762313600629032"
-            BuildableName = "iOSAsciiArtVideo.app"
+            BuildableName = "ASCII Camera.app"
             BlueprintName = "iOSAsciiArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1977ACEF1762313600629032"
-            BuildableName = "iOSAsciiArtVideo.app"
+            BuildableName = "ASCII Camera.app"
             BlueprintName = "iOSAsciiArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1977ACEF1762313600629032"
-            BuildableName = "iOSAsciiArtVideo.app"
+            BuildableName = "ASCII Camera.app"
             BlueprintName = "iOSAsciiArtVideo"
             ReferencedContainer = "container:ASCIIArt.xcodeproj">
          </BuildableReference>

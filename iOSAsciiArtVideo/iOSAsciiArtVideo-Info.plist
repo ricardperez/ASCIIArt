@@ -20,7 +20,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.cogniFit.Cognifit.iPad</string>
+	<string>com.amidasoft.ASCIICamera</string>
 	<key>CFBundleIdentifier - 2</key>
 	<string>com.rp.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
