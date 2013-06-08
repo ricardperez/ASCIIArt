@@ -11,12 +11,13 @@
 #include <ctime>
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#ifndef IOS
 #include <opencv2/highgui.hpp>
+#endif
 
 CameraToASCIIArt::CameraToASCIIArt(bool showVideo_) : showVideo(showVideo_)
 {
 	this->capture = new cv::VideoCapture(0);
-	
 	if (this->showVideo)
 	{
 		cv::namedWindow("Camera", cv::WINDOW_AUTOSIZE );
@@ -28,7 +29,7 @@ CameraToASCIIArt::~CameraToASCIIArt()
 	delete this->capture;
 }
 
-bool CameraToASCIIArt::currentFrameASCII(std::string &strRepresentation)
+bool CameraToASCIIArt::currentFrameASCII(std::string &strRepresentation, int nRows, int nColumns)
 {
 	if (this->capture->isOpened())
 	{
@@ -37,15 +38,15 @@ bool CameraToASCIIArt::currentFrameASCII(std::string &strRepresentation)
 		
 		this->capture->read(capturedImage);
 		
-		std::string *newStrRepresentation = this->imageConverter.newASCIIArtStringForImageMat(capturedImage, transformedImage);
+		std::string *newStrRepresentation = this->imageConverter.newASCIIArtStringForImageMat(capturedImage, transformedImage, nRows, nColumns);
 		strRepresentation.append(*newStrRepresentation);
 		delete newStrRepresentation;
 		
+
 		if (this->showVideo)
 		{
 			cv::imshow("Camera", transformedImage);
 		}
-		
 		
 		return true;
 	} else

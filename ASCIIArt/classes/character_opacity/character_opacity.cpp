@@ -16,3 +16,8 @@ character(character_),
 opacity(NWOpacity_, NEOpacity_, SWOpacity_, SEOpacity_)
 {
 }
+
+bool CharacterOpacity::operator<(const CharacterOpacity &other) const
+{
+	return ((this->character < other.character) || ((this->character == other.character) && (this->opacity < other.opacity)));
+}

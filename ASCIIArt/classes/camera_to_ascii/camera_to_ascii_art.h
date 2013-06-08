@@ -21,7 +21,7 @@ private:
 public:
 	CameraToASCIIArt(bool showVideo = false);
 	~CameraToASCIIArt();
-	bool currentFrameASCII(std::string &strRepresentation);
+	bool currentFrameASCII(std::string &strRepresentation, int nRows=-1, int nColumns=-1);
 };
 
 #endif /* defined(__ASCIIArt__camera_to_ascii_art__) */

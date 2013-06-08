@@ -45,6 +45,7 @@ struct RegionOpacity
 	
 	RegionOpacity distanceToRegionOpacity(const RegionOpacity &otherRegionOpacity) const;
 	float meanDistanceToRegionOpacity(const RegionOpacity &otherRegionOpacity) const;
+	bool operator<(const RegionOpacity &other) const;
 	
 };
 

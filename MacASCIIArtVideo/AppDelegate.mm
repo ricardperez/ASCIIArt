@@ -39,7 +39,7 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		while (1)
 		{
-			cameraToASCIIArt->currentFrameASCII(asciiString);
+			cameraToASCIIArt->currentFrameASCII(asciiString, 50, 60);
 			NSString *nsstring = [NSString stringWithUTF8String:asciiString.c_str()];
 			asciiString.clear();
 			

@@ -53,12 +53,12 @@ void NormalizeRegions(std::vector<std::vector<RegionOpacity> > &regions)
 }
 
 
-void NormalizeCharacerOpacities(std::set<CharacterOpacity *> &characterOpacities)
+void NormalizeCharacerOpacities(std::vector<CharacterOpacity *> &characterOpacities)
 {
 	float minOpacity = FLT_MAX;
 	float maxOpacity = FLT_MIN;
 	
-	for (std::set<CharacterOpacity *>::iterator charactersIterator = characterOpacities.begin(); charactersIterator != characterOpacities.end(); ++charactersIterator)
+	for (std::vector<CharacterOpacity *>::iterator charactersIterator = characterOpacities.begin(); charactersIterator != characterOpacities.end(); ++charactersIterator)
 	{
 		RegionOpacity &currRegion = (*charactersIterator)->getRegionOpacity();
 		
@@ -74,7 +74,7 @@ void NormalizeCharacerOpacities(std::set<CharacterOpacity *> &characterOpacities
 	
 	float opacityRange = (maxOpacity - minOpacity);
 	
-	for (std::set<CharacterOpacity *>::iterator charactersIterator = characterOpacities.begin(); charactersIterator != characterOpacities.end(); ++charactersIterator)
+	for (std::vector<CharacterOpacity *>::iterator charactersIterator = characterOpacities.begin(); charactersIterator != characterOpacities.end(); ++charactersIterator)
 	{
 		RegionOpacity &region = (*charactersIterator)->getRegionOpacity();
 		

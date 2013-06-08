@@ -22,3 +22,8 @@ float RegionOpacity::meanDistanceToRegionOpacity(const RegionOpacity &otherRegio
 {
 	return (this->distanceToRegionOpacity(otherRegionOpacity).meanOpacity);
 }
+
+bool RegionOpacity::operator<(const RegionOpacity &other) const
+{
+	return (this->meanOpacity < other.meanOpacity);
+}

@@ -9,15 +9,18 @@
 #include "image_fragmenter.h"
 #include <opencv2/opencv.hpp>
 #include "functions.h"
-#include <opencv2/highgui.hpp>
 
-std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImage(const std::string &imageName, cv::Mat &resultImage, const int chunksWidth, const int chunksHeight) const
+#ifndef IOS
+#include <opencv2/highgui.hpp>
+#endif
+
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImage(const std::string &imageName, cv::Mat &resultImage, int nRows, int nColumns) const
 {
 	cv::Mat imageMat = cv::imread(imageName);
-	return this->newOpacitiesForImageMat(imageMat, resultImage, chunksWidth, chunksHeight);
+	return this->newOpacitiesForImageMat(imageMat, resultImage, nRows, nColumns);
 }
 
-std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, const int chunksWidth, const int chunksHeight) const
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows, int nColumns) const
 {
 	cv::Mat new_image = cv::Mat::zeros( imageMat.size(), imageMat.type() );
 	float alpha = 2.5f;
@@ -38,6 +41,8 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 //	resultImage = 255-resultImage;
 	
 	
+	int chunksWidth = (nColumns <= 0 ? 22 : (resultImage.cols / nColumns));
+	int chunksHeight = (nRows <= 0 ? 22 : (resultImage.rows / nRows));
 	ASCII_Size chunksSize(chunksWidth, chunksHeight);
 	std::vector<std::vector<RegionOpacity> > *rows = new std::vector<std::vector<RegionOpacity> >();
 	for (int iRow=0; iRow<imageMat.rows; iRow += chunksSize.height)

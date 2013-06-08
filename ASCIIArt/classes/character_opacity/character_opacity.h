@@ -30,6 +30,7 @@ public:
 	
 	char &getCharacter() { return this->character; }
 	RegionOpacity &getRegionOpacity() { return this->opacity; }
+	bool operator<(const CharacterOpacity &other) const;
 	
 };
 

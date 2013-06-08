@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		195805F517628DA5004DEE8B /* UIImage+CVMat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 195805F417628DA5004DEE8B /* UIImage+CVMat.mm */; };
+		195805F717629F98004DEE8B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195805F617629F98004DEE8B /* CoreVideo.framework */; };
+		195805F91762A32D004DEE8B /* camera_flip_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 195805F81762A32D004DEE8B /* camera_flip_button.png */; };
 		1977AC831761F0FA00629032 /* camera_to_ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */; };
 		1977ACC0176216FA00629032 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACBF176216FA00629032 /* Cocoa.framework */; };
 		1977ACCA176216FB00629032 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACC8176216FB00629032 /* InfoPlist.strings */; };
@@ -28,6 +31,27 @@
 		1977ACE71762183900629032 /* libopencv_ml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBAA176108AC00C28FC9 /* libopencv_ml.dylib */; };
 		1977ACEA176220F900629032 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE8176220F900629032 /* functions.cpp */; };
 		1977ACEB176225BD00629032 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE8176220F900629032 /* functions.cpp */; };
+		1977ACF21762313600629032 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACF11762313600629032 /* UIKit.framework */; };
+		1977ACF41762313600629032 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACF31762313600629032 /* Foundation.framework */; };
+		1977ACF61762313600629032 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977ACF51762313600629032 /* CoreGraphics.framework */; };
+		1977ACFC1762313600629032 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1977ACFA1762313600629032 /* InfoPlist.strings */; };
+		1977ACFE1762313600629032 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACFD1762313600629032 /* main.m */; };
+		1977AD021762313600629032 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1977AD011762313600629032 /* AppDelegate.m */; };
+		1977AD041762313600629032 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1977AD031762313600629032 /* Default.png */; };
+		1977AD061762313600629032 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1977AD051762313600629032 /* Default@2x.png */; };
+		1977AD081762313600629032 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1977AD071762313600629032 /* Default-568h@2x.png */; };
+		1977AD0B1762313600629032 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1977AD0A1762313600629032 /* ViewController.mm */; };
+		1977AD0E1762313600629032 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1977AD0C1762313600629032 /* ViewController.xib */; };
+		1977AD201762333100629032 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977AD1F1762333100629032 /* opencv2.framework */; };
+		1977AD28176235EC00629032 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1977ACE8176220F900629032 /* functions.cpp */; };
+		1977AD29176235EC00629032 /* structs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBBD17610FED00C28FC9 /* structs.cpp */; };
+		1977AD2A176235FB00629032 /* character_opacity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBB317610D2B00C28FC9 /* character_opacity.cpp */; };
+		1977AD2B1762360A00629032 /* character_opacity_calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC1176122F000C28FC9 /* character_opacity_calculator.cpp */; };
+		1977AD2C1762363400629032 /* image_fragmenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC51761230900C28FC9 /* image_fragmenter.cpp */; };
+		1977AD2D176236B900629032 /* ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DBC917612B8500C28FC9 /* ascii_art.cpp */; };
+		1977AD3017623D0B00629032 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977AD2F17623D0B00629032 /* AVFoundation.framework */; };
+		1977AD3217623F4600629032 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977AD3117623F4600629032 /* CoreMedia.framework */; };
+		1977AD34176245FD00629032 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1977AD33176245FD00629032 /* ImageIO.framework */; };
 		19F8DB9B1761085200C28FC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19F8DB9A1761085200C28FC9 /* main.cpp */; };
 		19F8DB9D1761085200C28FC9 /* ASCIIArt.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19F8DB9C1761085200C28FC9 /* ASCIIArt.1 */; };
 		19F8DBAB176108AC00C28FC9 /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F8DBA7176108AC00C28FC9 /* libopencv_core.dylib */; };
@@ -56,6 +80,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		195805F317628DA5004DEE8B /* UIImage+CVMat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CVMat.h"; sourceTree = "<group>"; };
+		195805F417628DA5004DEE8B /* UIImage+CVMat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+CVMat.mm"; sourceTree = "<group>"; };
+		195805F617629F98004DEE8B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
+		195805F81762A32D004DEE8B /* camera_flip_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera_flip_button.png; path = ../../../../Desktop/camera_flip_button.png; sourceTree = "<group>"; };
 		1977AC811761F0FA00629032 /* camera_to_ascii_art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera_to_ascii_art.cpp; sourceTree = "<group>"; };
 		1977AC821761F0FA00629032 /* camera_to_ascii_art.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_to_ascii_art.h; sourceTree = "<group>"; };
 		1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacASCIIArtVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +103,26 @@
 		1977ACE2176217E800629032 /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		1977ACE8176220F900629032 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
 		1977ACE9176220F900629032 /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functions.h; sourceTree = "<group>"; };
+		1977ACF01762313600629032 /* iOSAsciiArtVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAsciiArtVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1977ACF11762313600629032 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1977ACF31762313600629032 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1977ACF51762313600629032 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		1977ACF91762313600629032 /* iOSAsciiArtVideo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSAsciiArtVideo-Info.plist"; sourceTree = "<group>"; };
+		1977ACFB1762313600629032 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1977ACFD1762313600629032 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1977ACFF1762313600629032 /* iOSAsciiArtVideo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAsciiArtVideo-Prefix.pch"; sourceTree = "<group>"; };
+		1977AD001762313600629032 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1977AD011762313600629032 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1977AD031762313600629032 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1977AD051762313600629032 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1977AD071762313600629032 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1977AD091762313600629032 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1977AD0A1762313600629032 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		1977AD0D1762313600629032 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		1977AD1F1762333100629032 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		1977AD2F17623D0B00629032 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		1977AD3117623F4600629032 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		1977AD33176245FD00629032 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		19F8DB971761085200C28FC9 /* ASCIIArt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ASCIIArt; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F8DB9A1761085200C28FC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		19F8DB9C1761085200C28FC9 /* ASCIIArt.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ASCIIArt.1; sourceTree = "<group>"; };
@@ -109,6 +157,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1977ACED1762313600629032 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				195805F717629F98004DEE8B /* CoreVideo.framework in Frameworks */,
+				1977AD34176245FD00629032 /* ImageIO.framework in Frameworks */,
+				1977AD3217623F4600629032 /* CoreMedia.framework in Frameworks */,
+				1977AD3017623D0B00629032 /* AVFoundation.framework in Frameworks */,
+				1977ACF21762313600629032 /* UIKit.framework in Frameworks */,
+				1977ACF41762313600629032 /* Foundation.framework in Frameworks */,
+				1977ACF61762313600629032 /* CoreGraphics.framework in Frameworks */,
+				1977AD201762333100629032 /* opencv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		19F8DB941761085200C28FC9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,6 +186,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		195805F217628D60004DEE8B /* ImageBridge */ = {
+			isa = PBXGroup;
+			children = (
+				195805F317628DA5004DEE8B /* UIImage+CVMat.h */,
+				195805F417628DA5004DEE8B /* UIImage+CVMat.mm */,
+			);
+			path = ImageBridge;
+			sourceTree = "<group>";
+		};
 		1977AC801761F0EE00629032 /* camera_to_ascii */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +207,14 @@
 		1977ACBE176216FA00629032 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				195805F617629F98004DEE8B /* CoreVideo.framework */,
+				1977AD33176245FD00629032 /* ImageIO.framework */,
+				1977AD3117623F4600629032 /* CoreMedia.framework */,
+				1977AD2F17623D0B00629032 /* AVFoundation.framework */,
 				1977ACBF176216FA00629032 /* Cocoa.framework */,
+				1977ACF11762313600629032 /* UIKit.framework */,
+				1977ACF31762313600629032 /* Foundation.framework */,
+				1977ACF51762313600629032 /* CoreGraphics.framework */,
 				1977ACC1176216FA00629032 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -176,11 +255,50 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1977ACF71762313600629032 /* iOSAsciiArtVideo */ = {
+			isa = PBXGroup;
+			children = (
+				195805F217628D60004DEE8B /* ImageBridge */,
+				1977AD001762313600629032 /* AppDelegate.h */,
+				1977AD011762313600629032 /* AppDelegate.m */,
+				1977AD091762313600629032 /* ViewController.h */,
+				1977AD0A1762313600629032 /* ViewController.mm */,
+				1977AD0C1762313600629032 /* ViewController.xib */,
+				1977AD1E1762332700629032 /* frameworks */,
+				1977ACF81762313600629032 /* Supporting Files */,
+			);
+			path = iOSAsciiArtVideo;
+			sourceTree = "<group>";
+		};
+		1977ACF81762313600629032 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1977ACF91762313600629032 /* iOSAsciiArtVideo-Info.plist */,
+				1977ACFA1762313600629032 /* InfoPlist.strings */,
+				1977ACFD1762313600629032 /* main.m */,
+				195805F81762A32D004DEE8B /* camera_flip_button.png */,
+				1977ACFF1762313600629032 /* iOSAsciiArtVideo-Prefix.pch */,
+				1977AD031762313600629032 /* Default.png */,
+				1977AD051762313600629032 /* Default@2x.png */,
+				1977AD071762313600629032 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1977AD1E1762332700629032 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1977AD1F1762333100629032 /* opencv2.framework */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
 		19F8DB8E1761085200C28FC9 = {
 			isa = PBXGroup;
 			children = (
 				19F8DB991761085200C28FC9 /* ASCIIArt */,
 				1977ACC5176216FB00629032 /* MacASCIIArtVideo */,
+				1977ACF71762313600629032 /* iOSAsciiArtVideo */,
 				1977ACBE176216FA00629032 /* Frameworks */,
 				19F8DB981761085200C28FC9 /* Products */,
 			);
@@ -191,6 +309,7 @@
 			children = (
 				19F8DB971761085200C28FC9 /* ASCIIArt */,
 				1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */,
+				1977ACF01762313600629032 /* iOSAsciiArtVideo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,6 +458,23 @@
 			productReference = 1977ACBD176216FA00629032 /* MacASCIIArtVideo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1977ACEF1762313600629032 /* iOSAsciiArtVideo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1977AD0F1762313600629032 /* Build configuration list for PBXNativeTarget "iOSAsciiArtVideo" */;
+			buildPhases = (
+				1977ACEC1762313600629032 /* Sources */,
+				1977ACED1762313600629032 /* Frameworks */,
+				1977ACEE1762313600629032 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSAsciiArtVideo;
+			productName = iOSAsciiArtVideo;
+			productReference = 1977ACF01762313600629032 /* iOSAsciiArtVideo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		19F8DB961761085200C28FC9 /* ASCIIArt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19F8DBA01761085200C28FC9 /* Build configuration list for PBXNativeTarget "ASCIIArt" */;
@@ -379,6 +515,7 @@
 			targets = (
 				19F8DB961761085200C28FC9 /* ASCIIArt */,
 				1977ACBC176216FA00629032 /* MacASCIIArtVideo */,
+				1977ACEF1762313600629032 /* iOSAsciiArtVideo */,
 			);
 		};
 /* End PBXProject section */
@@ -391,6 +528,19 @@
 				1977ACCA176216FB00629032 /* InfoPlist.strings in Resources */,
 				1977ACD0176216FB00629032 /* Credits.rtf in Resources */,
 				1977ACD6176216FB00629032 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1977ACEE1762313600629032 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1977ACFC1762313600629032 /* InfoPlist.strings in Resources */,
+				1977AD041762313600629032 /* Default.png in Resources */,
+				1977AD061762313600629032 /* Default@2x.png in Resources */,
+				1977AD081762313600629032 /* Default-568h@2x.png in Resources */,
+				1977AD0E1762313600629032 /* ViewController.xib in Resources */,
+				195805F91762A32D004DEE8B /* camera_flip_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +562,23 @@
 				1977ACD3176216FB00629032 /* AppDelegate.mm in Sources */,
 				1977ACE3176217E800629032 /* Foo.cpp in Sources */,
 				1977ACEB176225BD00629032 /* functions.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1977ACEC1762313600629032 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1977AD2D176236B900629032 /* ascii_art.cpp in Sources */,
+				1977AD2C1762363400629032 /* image_fragmenter.cpp in Sources */,
+				1977AD2B1762360A00629032 /* character_opacity_calculator.cpp in Sources */,
+				1977AD2A176235FB00629032 /* character_opacity.cpp in Sources */,
+				1977AD28176235EC00629032 /* functions.cpp in Sources */,
+				1977AD29176235EC00629032 /* structs.cpp in Sources */,
+				1977ACFE1762313600629032 /* main.m in Sources */,
+				1977AD021762313600629032 /* AppDelegate.m in Sources */,
+				1977AD0B1762313600629032 /* ViewController.mm in Sources */,
+				195805F517628DA5004DEE8B /* UIImage+CVMat.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +625,22 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		1977ACFA1762313600629032 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1977ACFB1762313600629032 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1977AD0C1762313600629032 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1977AD0D1762313600629032 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -485,6 +668,64 @@
 				INFOPLIST_FILE = "MacASCIIArtVideo/MacASCIIArtVideo-Info.plist";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1977AD101762313600629032 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ricard PÃÂ©rez del Campo (628B66QKD9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ricard PÃÂ©rez del Campo (628B66QKD9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/iOSAsciiArtVideo/frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSAsciiArtVideo/iOSAsciiArtVideo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"IOS=1",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "iOSAsciiArtVideo/iOSAsciiArtVideo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1977AD111762313600629032 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ricard PÃÂ©rez del Campo (628B66QKD9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ricard PÃÂ©rez del Campo (628B66QKD9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/iOSAsciiArtVideo/frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSAsciiArtVideo/iOSAsciiArtVideo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "IOS=1";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "iOSAsciiArtVideo/iOSAsciiArtVideo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "750DF7AE-33BA-4A99-9132-F4E33892CFC9";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -580,6 +821,16 @@
 				1977ACD9176216FB00629032 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1977AD0F1762313600629032 /* Build configuration list for PBXNativeTarget "iOSAsciiArtVideo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1977AD101762313600629032 /* Debug */,
+				1977AD111762313600629032 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19F8DB921761085200C28FC9 /* Build configuration list for PBXProject "ASCIIArt" */ = {
 			isa = XCConfigurationList;

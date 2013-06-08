@@ -26,6 +26,6 @@ class CharacterOpacity;
  */
 void NormalizeRegions(std::vector<std::vector<RegionOpacity> > &regions);
 
-void NormalizeCharacerOpacities(std::set<CharacterOpacity *> &characterOpacities);
+void NormalizeCharacerOpacities(std::vector<CharacterOpacity *> &characterOpacities);
 
 #endif /* defined(__ASCIIArt__functions__) */
