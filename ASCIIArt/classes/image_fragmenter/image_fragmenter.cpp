@@ -33,33 +33,33 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImage(
 	return this->newOpacitiesForImageMat(imageMat, resultImage, nRows, nColumns);
 }
 
-std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows, int nColumns) const
-{	
-	if (&imageMat != &resultImage)
+void ImageFragmenter::transformImage(const cv::Mat &input, cv::Mat &output) const
+{
+	if (&input != &output)
 	{
-		imageMat.copyTo(resultImage);
+		input.copyTo(output);
 	}
 	
-	if (resultImage.channels() != 1)
+	if (output.channels() != 1)
 	{
-		cv::cvtColor(resultImage, resultImage, cv::COLOR_BGR2GRAY);
+		cv::cvtColor(output, output, cv::COLOR_BGR2GRAY);
 	}
 	
-//	cv::Canny(resultImage, resultImage, 20, 100);
+	//	cv::Canny(resultImage, resultImage, 20, 100);
 	
 	if (this->negative)
 	{
-		resultImage = 255-resultImage;
+		output = 255-output;
 	}
 	
 	const uchar* imageDataPtr;
 	
 	int maxGray = 0;
 	int minGray = 255;
-	for (int iRow=0; iRow<resultImage.rows; ++iRow)
+	for (int iRow=0; iRow<output.rows; ++iRow)
 	{
-		imageDataPtr = resultImage.ptr(iRow);
-		for (int iCol=0; iCol<resultImage.cols; ++iCol)
+		imageDataPtr = output.ptr(iRow);
+		for (int iCol=0; iCol<output.cols; ++iCol)
 		{
 			int grayValue = imageDataPtr[iCol];
 			if (grayValue < minGray)
@@ -83,10 +83,10 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 	float alpha = this->contrastAlpha;
 	int beta = this->contrastBeta;
 	
-	for (int iRow=0; iRow<resultImage.rows; ++iRow)
+	for (int iRow=0; iRow<output.rows; ++iRow)
 	{
-		imageDataPtr = resultImage.ptr(iRow);
-		for (int iCol=0; iCol<resultImage.cols; ++iCol)
+		imageDataPtr = output.ptr(iRow);
+		for (int iCol=0; iCol<output.cols; ++iCol)
 		{
 			int pixelGrayScale = imageDataPtr[iCol];
 			int scaledGray = (((pixelGrayScale - minGray) / graysRange) * 255);
@@ -120,11 +120,16 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 				{
 					usedGray = maxThreshold;
 				}
-
+				
 			}
-			resultImage.ptr(iRow)[iCol] = usedGray;
+			output.ptr(iRow)[iCol] = usedGray;
 		}
 	}
+}
+
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows, int nColumns) const
+{	
+	this->transformImage(imageMat, resultImage);
 	
 	int _nRows = nRows;
 	int _nColumns = nColumns;

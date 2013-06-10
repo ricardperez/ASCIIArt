@@ -40,6 +40,9 @@ private:
 	float contrastAlpha;
 	int contrastBeta;
 	bool negative;
+	
+	void transformImage(const cv::Mat &input, cv::Mat &output) const;
+	
 public:
 	ImageFragmenter() : nGrays(8), contrastAlpha(1.7f), contrastBeta(30), negative(false) {}
 	std::vector<std::vector<RegionOpacity> > *newOpacitiesForImage(const std::string &imageName, cv::Mat &resultImage, int nRows=-1, int nColumns=-1) const;
