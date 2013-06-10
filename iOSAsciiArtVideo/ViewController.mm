@@ -65,6 +65,8 @@
 	[_cameraOptionsButton release];
 	[_controlsOptionsContainerView release];
 	[_controlsOptionsBackgroundImageView release];
+	[_controlsOptionsScrollView release];
+	[_controlsOptionsPageControl release];
 	[_saveImageSwitch release];
 	[_saveImageLabel release];
 	[_setTextToClipboardSwitch release];
@@ -75,6 +77,12 @@
 	[_showUsedImageLabel release];
 	[_fontSizeLabel release];
 	[_fontSizeSlider release];
+	[_grayScaleLabel release];
+	[_grayScaleSlider release];
+	[_contrastAlphaLabel release];
+	[_contrastAlphaSlider release];
+	[_contrastBetaLabel release];
+	[_contrastBetaSlider release];
 	
 	[_session release];
 	[_frontCameraDeviceInput release];
@@ -112,6 +120,13 @@
 	
 	[self.usedImageView setHidden:YES];
 	[self.showUsedImageSwitch setOn:NO];
+	
+	self.controlsOptionsScrollView.contentSize = CGSizeMake(2*self.controlsOptionsScrollView.frame.size.width, self.controlsOptionsScrollView.frame.size.height);
+	self.controlsOptionsScrollView.delegate = self;
+	
+	[self.grayScaleSlider setValue:imageToTextConversor->getImageFragmenter().getNGrays()];
+	[self.contrastAlphaSlider setValue:imageToTextConversor->getImageFragmenter().getContrastAlpha()];
+	[self.contrastBetaSlider setValue:imageToTextConversor->getImageFragmenter().getContrastBeta()];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -260,6 +275,27 @@
 		[self.imageTextRepresentationLabel setBackgroundColor:[UIColor whiteColor]];
 		[self.imageTextRepresentationLabel setTextColor:[UIColor blackColor]];
 	}
+}
+
+
+- (IBAction)grayScaleSliderAction:(id)sender
+{
+	self.grayScaleSlider.value = round(self.grayScaleSlider.value);
+	int nGrays = [self.grayScaleSlider value];
+	imageToTextConversor->getImageFragmenter().setNGrays(nGrays);
+}
+
+- (IBAction)contrastAlphaSliderAction:(id)sender
+{
+	float alpha = [self.contrastAlphaSlider value];
+	imageToTextConversor->getImageFragmenter().setContrastAlpha(alpha);
+}
+
+- (IBAction)contrastBetaSliderAction:(id)sender
+{
+	self.contrastBetaSlider.value = round(self.contrastBetaSlider.value);
+	int beta = [self.contrastBetaSlider value];
+	imageToTextConversor->getImageFragmenter().setContrastBeta(beta);
 }
 
 
@@ -536,6 +572,19 @@
 	
 	nRows = (self.imageTextRepresentationLabel.frame.size.height / oneCharSize.height);
 	nColumns = nChars;
+}
+
+
+#pragma mark - UIScrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (scrollView.contentOffset.x > scrollView.frame.size.width*0.6f)
+	{
+		[self.controlsOptionsPageControl setCurrentPage:1];
+	} else
+	{
+		[self.controlsOptionsPageControl setCurrentPage:0];
+	}
 }
 
 @end

@@ -25,6 +25,7 @@
 #include <vector>
 #include "character_opacity.h"
 #include "structs.h"
+#include "image_fragmenter.h"
 
 namespace cv
 {
@@ -36,6 +37,7 @@ class ASCIIArt
 {
 private:
 	std::vector<CharacterOpacity *> characterOpacities;
+	ImageFragmenter imageFragmenter;
 	char characterForRegionOpacity(const RegionOpacity &regionOpacity);
 	void getASCIIStringFromImageOpacities(std::vector<std::vector<RegionOpacity> > *imageOpacities, std::string *imageStr);
 public:
@@ -48,6 +50,8 @@ public:
 	 */
 	std::string *newASCIIArtStringForImageName(const std::string &imageName, cv::Mat &resultImage, int nRows=-1, int nColumns=-1);
 	std::string *newASCIIArtStringForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows=-1, int nColumns=-1);
+	
+	ImageFragmenter &getImageFragmenter() { return this->imageFragmenter; }
 };
 
 #endif /* defined(__ASCIIArt__ascii_art__) */

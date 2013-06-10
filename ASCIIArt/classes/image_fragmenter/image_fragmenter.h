@@ -36,9 +36,26 @@ class ImageFragmenter
 {
 private:
 	RegionOpacity getOpacityForRegionForImage(const int &rowIndex, const int &columnIndex, const ASCII_Size &regionSize, const cv::Mat &imageMat) const;
+	int nGrays;
+	float contrastAlpha;
+	int contrastBeta;
+	bool negative;
 public:
+	ImageFragmenter() : nGrays(8), contrastAlpha(1.7f), contrastBeta(30), negative(false) {}
 	std::vector<std::vector<RegionOpacity> > *newOpacitiesForImage(const std::string &imageName, cv::Mat &resultImage, int nRows=-1, int nColumns=-1) const;
 	std::vector<std::vector<RegionOpacity> > *newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows=-1, int nColumns=-1) const;
+	
+	void setNGrays(int nGrays_) { this->nGrays = nGrays_; }
+	int getNGrays() { return this->nGrays; }
+	
+	void setContrastAlpha(float alpha) { this->contrastAlpha = alpha; }
+	float getContrastAlpha() { return this->contrastAlpha; }
+	
+	void setContrastBeta(int beta) { this->contrastBeta = beta; }
+	int getContrastBeta() { return this->contrastBeta; }
+	
+	void setNegative(bool negative) { this->negative = negative; }
+	bool getNegative() { return this->negative; }
 };
 
 #endif /* defined(__ASCIIArt__image_fragmenter__) */

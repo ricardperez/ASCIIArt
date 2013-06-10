@@ -40,10 +40,17 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 		imageMat.copyTo(resultImage);
 	}
 	
-	cv::cvtColor(resultImage, resultImage, cv::COLOR_BGR2GRAY);
+	if (resultImage.channels() != 1)
+	{
+		cv::cvtColor(resultImage, resultImage, cv::COLOR_BGR2GRAY);
+	}
 	
 //	cv::Canny(resultImage, resultImage, 20, 100);
-//	resultImage = 255-resultImage;
+	
+	if (this->negative)
+	{
+		resultImage = 255-resultImage;
+	}
 	
 	const uchar* imageDataPtr;
 	
@@ -68,13 +75,13 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 	float graysRange = (maxGray - minGray);
 	
 	
-	int nSteps = 8;
+	int nSteps = (this->nGrays <= 0 ? 1 : this->nGrays);
 	int minThreshold = 30;
 	int maxThreshold = 225;
 	int step = ((maxThreshold-minThreshold) / nSteps);
 	
-	float alpha = 1.7f;
-	int beta = 30;
+	float alpha = this->contrastAlpha;
+	int beta = this->contrastBeta;
 	
 	for (int iRow=0; iRow<resultImage.rows; ++iRow)
 	{
@@ -83,6 +90,8 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 		{
 			int pixelGrayScale = imageDataPtr[iCol];
 			int scaledGray = (((pixelGrayScale - minGray) / graysRange) * 255);
+			
+			scaledGray = cv::saturate_cast<uchar>(alpha * scaledGray + beta );
 			
 			int usedGray;
 			if (scaledGray < minThreshold)
@@ -113,13 +122,7 @@ std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageM
 				}
 
 			}
-			
-#ifdef IOS
-//			resultImage.at<uchar>(iRow, iCol) = usedGray;
-			resultImage.at<uchar>(iRow, iCol) = cv::saturate_cast<uchar>(alpha * usedGray + beta );
-#else
-			resultImage.ptr(iRow)[iCol] = cv::saturate_cast<uchar>(alpha * usedGray + beta );
-#endif
+			resultImage.ptr(iRow)[iCol] = usedGray;
 		}
 	}
 	

@@ -23,7 +23,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface ViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 {
 }
 
@@ -39,6 +39,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *cameraOptionsButton;
 @property (nonatomic, retain) IBOutlet UIView *controlsOptionsContainerView;
 @property (nonatomic, retain) IBOutlet UIImageView *controlsOptionsBackgroundImageView;
+@property (nonatomic, retain) IBOutlet UIScrollView *controlsOptionsScrollView;
+@property (nonatomic, retain) IBOutlet UIPageControl *controlsOptionsPageControl;
 @property (nonatomic, retain) IBOutlet UISwitch *saveImageSwitch;
 @property (nonatomic, retain) IBOutlet UILabel *saveImageLabel;
 @property (nonatomic, retain) IBOutlet UISwitch *setTextToClipboardSwitch;
@@ -51,6 +53,12 @@
 @property (nonatomic, retain) IBOutlet UILabel *matrixModeLabel;
 @property (nonatomic, retain) IBOutlet UISlider *fontSizeSlider;
 @property (nonatomic, retain) IBOutlet UILabel *fontSizeLabel;
+@property (nonatomic, retain) IBOutlet UISlider *grayScaleSlider;
+@property (nonatomic, retain) IBOutlet UILabel *grayScaleLabel;
+@property (nonatomic, retain) IBOutlet UISlider *contrastAlphaSlider;
+@property (nonatomic, retain) IBOutlet UILabel *contrastAlphaLabel;
+@property (nonatomic, retain) IBOutlet UISlider *contrastBetaSlider;
+@property (nonatomic, retain) IBOutlet UILabel *contrastBetaLabel;
 
 @property (nonatomic, retain) UIPanGestureRecognizer *panGestureRecognizer;
 
@@ -68,5 +76,9 @@
 - (IBAction)showUsedImageSwitchAction:(id)sender;
 - (IBAction)fontSizeSliderAction:(id)sender;
 - (IBAction)matrixModeSwitchAction:(id)sender;
+
+- (IBAction)grayScaleSliderAction:(id)sender;
+- (IBAction)contrastAlphaSliderAction:(id)sender;
+- (IBAction)contrastBetaSliderAction:(id)sender;
 
 @end
