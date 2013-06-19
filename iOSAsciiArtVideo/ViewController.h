@@ -59,6 +59,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *contrastAlphaLabel;
 @property (nonatomic, retain) IBOutlet UISlider *contrastBetaSlider;
 @property (nonatomic, retain) IBOutlet UILabel *contrastBetaLabel;
+@property (nonatomic, retain) IBOutlet UILabel *useWhiteSpacesLabel;
+@property (nonatomic, retain) IBOutlet UISwitch *useWhiteSpacesSwitch;
 
 @property (nonatomic, retain) UIPanGestureRecognizer *panGestureRecognizer;
 
@@ -80,5 +82,6 @@
 - (IBAction)grayScaleSliderAction:(id)sender;
 - (IBAction)contrastAlphaSliderAction:(id)sender;
 - (IBAction)contrastBetaSliderAction:(id)sender;
+- (IBAction)useWhiteSpacesSwitchAction:(id)sender;
 
 @end

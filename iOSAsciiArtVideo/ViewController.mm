@@ -83,6 +83,8 @@
 	[_contrastAlphaSlider release];
 	[_contrastBetaLabel release];
 	[_contrastBetaSlider release];
+	[_useWhiteSpacesLabel release];
+	[_useWhiteSpacesSwitch release];
 	
 	[_session release];
 	[_frontCameraDeviceInput release];
@@ -120,6 +122,8 @@
 	
 	[self.usedImageView setHidden:YES];
 	[self.showUsedImageSwitch setOn:NO];
+	[self.originalImageView setHidden:YES];
+	[self.showOriginalImageSwitch setOn:NO];
 	
 	self.controlsOptionsScrollView.contentSize = CGSizeMake(2*self.controlsOptionsScrollView.frame.size.width, self.controlsOptionsScrollView.frame.size.height);
 	self.controlsOptionsScrollView.delegate = self;
@@ -127,6 +131,8 @@
 	[self.grayScaleSlider setValue:imageToTextConversor->getImageFragmenter().getNGrays()];
 	[self.contrastAlphaSlider setValue:imageToTextConversor->getImageFragmenter().getContrastAlpha()];
 	[self.contrastBetaSlider setValue:imageToTextConversor->getImageFragmenter().getContrastBeta()];
+	
+	[self.imageTextRepresentationLabel setFont:[UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:self.fontSizeSlider.value]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -137,8 +143,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	[self canvasSizeForFontSize:self.fontSizeSlider.value nRows:_nRows nColumns:_nColumns];
+	[self setUpRowsAndColumns];
 	[self setupCaptureSession];
 }
 
@@ -259,10 +264,14 @@
 - (IBAction)fontSizeSliderAction:(id)sender
 {
 	[self.imageTextRepresentationLabel setFont:[UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:self.fontSizeSlider.value]];
-	[self canvasSizeForFontSize:self.fontSizeSlider.value nRows:_nRows nColumns:_nColumns];
-	[self.fontSizeLabel setText:[NSString stringWithFormat:@"Font size: %.1f", self.fontSizeSlider.value]];
+	[self setUpRowsAndColumns];
 }
 
+- (IBAction)useWhiteSpacesSwitchAction:(id)sender
+{
+	imageToTextConversor->setUseWhiteSpaceBetweenColumns([((UISwitch *)sender) isOn] ? true : false);
+	[self setUpRowsAndColumns];
+}
 
 - (IBAction)matrixModeSwitchAction:(id)sender
 {
@@ -550,18 +559,19 @@
 	}
 }
 
-- (void)canvasSizeForFontSize:(float)fontSize nRows:(int &)nRows nColumns:(int &)nColumns
+- (void)setUpRowsAndColumns
 {
-	UIFont *font = [UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:fontSize];
+	UIFont *font = [UIFont fontWithName:[self.imageTextRepresentationLabel.font fontName] size:self.fontSizeSlider.value];
 	CGSize oneCharSize = [@"X" sizeWithFont:font];
 	
 	int nChars = 1;
 	NSMutableString *string = [NSMutableString stringWithString:@"X"];
 	CGSize constrainedSize = CGSizeMake(self.imageTextRepresentationLabel.frame.size.width, FLT_MAX);
 	BOOL sameLine = YES;
+	NSString *stringToAppend = (imageToTextConversor->isUsingWhiteSpaceBetweenColumns() ? @" X" : @"X");
 	while (sameLine)
 	{
-		[string appendString:@" X"];
+		[string appendString:stringToAppend];
 		CGFloat requiredHeight = [string sizeWithFont:font constrainedToSize:constrainedSize].height;
 		sameLine = (ABS(requiredHeight - oneCharSize.height) < 0.00001f);
 		if (sameLine)
@@ -570,8 +580,10 @@
 		}
 	}
 	
-	nRows = (self.imageTextRepresentationLabel.frame.size.height / oneCharSize.height);
-	nColumns = nChars;
+	self.nRows = (self.imageTextRepresentationLabel.frame.size.height / oneCharSize.height);
+	self.nColumns = nChars;
+	
+	[self.fontSizeLabel setText:[NSString stringWithFormat:@"Font size: %.1f", self.fontSizeSlider.value]];
 }
 
 

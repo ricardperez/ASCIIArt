@@ -35,6 +35,8 @@ public:
 	CameraToASCIIArt(bool showVideo = false);
 	~CameraToASCIIArt();
 	bool currentFrameASCII(std::string &strRepresentation, int nRows=-1, int nColumns=-1);
+	
+	ASCIIArt &getImageConverter() { return this->imageConverter; }
 };
 
 #endif /* defined(__ASCIIArt__camera_to_ascii_art__) */

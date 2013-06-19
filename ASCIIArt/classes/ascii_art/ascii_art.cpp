@@ -24,7 +24,7 @@
 #include <cfloat>
 #include "functions.h"
 
-ASCIIArt::ASCIIArt()
+ASCIIArt::ASCIIArt() : useWhiteSpaceBetweenColumns(true)
 {
 	CharacterOpacityCalculator characterOpacityCalculator;
 	for (char nextChar='A'; nextChar<='Z'; ++nextChar)
@@ -78,9 +78,12 @@ void ASCIIArt::getASCIIStringFromImageOpacities(std::vector<std::vector<RegionOp
 			char character = this->characterForRegionOpacity(regionOpacity);
 			imageStr->push_back(character);
 			
-			if (columnsIterator != (row.end()-1))
+			if (this->useWhiteSpaceBetweenColumns)
 			{
-				imageStr->push_back(' ');
+				if (columnsIterator != (row.end()-1))
+				{
+					imageStr->push_back(' ');
+				}
 			}
 		}
 		if (rowsIterator != (imageOpacities->end()-1))

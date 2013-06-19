@@ -40,6 +40,7 @@ private:
 	ImageFragmenter imageFragmenter;
 	char characterForRegionOpacity(const RegionOpacity &regionOpacity);
 	void getASCIIStringFromImageOpacities(std::vector<std::vector<RegionOpacity> > *imageOpacities, std::string *imageStr);
+	bool useWhiteSpaceBetweenColumns; //defaults to yes
 public:
 	ASCIIArt();
 	~ASCIIArt();
@@ -52,6 +53,9 @@ public:
 	std::string *newASCIIArtStringForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows=-1, int nColumns=-1);
 	
 	ImageFragmenter &getImageFragmenter() { return this->imageFragmenter; }
+	bool isUsingWhiteSpaceBetweenColumns() { return this->useWhiteSpaceBetweenColumns; }
+	void setUseWhiteSpaceBetweenColumns(bool useWhiteSpace) { this->useWhiteSpaceBetweenColumns = useWhiteSpace; }
+	
 };
 
 #endif /* defined(__ASCIIArt__ascii_art__) */

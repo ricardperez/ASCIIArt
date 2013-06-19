@@ -85,7 +85,15 @@
 	
 	
 	self.nRows = (usableHeight / oneCharSize.height);
-	self.nColumns = (self.nRows * usableWidth / usableHeight);
+	if (cameraToASCIIArt->getImageConverter().isUsingWhiteSpaceBetweenColumns())
+	{
+		self.nColumns = (self.nRows * usableWidth / usableHeight);
+	} else
+	{
+		self.nColumns = 2*(self.nRows * usableWidth / usableHeight);
+	}
+	
+//	NSLog(@"%i", self.nColumns);
 }
 
 @end

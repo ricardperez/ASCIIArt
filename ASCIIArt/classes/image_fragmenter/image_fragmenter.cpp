@@ -127,49 +127,58 @@ void ImageFragmenter::transformImage(const cv::Mat &input, cv::Mat &output) cons
 	}
 }
 
-std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows, int nColumns) const
-{	
-	this->transformImage(imageMat, resultImage);
-	
+ASCII_Size ImageFragmenter::imageChunksSizeForRowsAndColumns(const cv::Mat &image, int nRows, int nColumns, float &remainingWidthPerColumn, float &remainingHeightPerRow) const
+{
 	int _nRows = nRows;
 	int _nColumns = nColumns;
-
 	
-	int chunksWidth = (nColumns <= 0 ? 22 : (resultImage.cols / nColumns));
-	int chunksHeight = (nRows <= 0 ? 22 : (resultImage.rows / nRows));
+	
+	int chunksWidth = (nColumns <= 0 ? 22 : (image.cols / nColumns));
+	int chunksHeight = (nRows <= 0 ? 22 : (image.rows / nRows));
 	
 	if (_nRows <= 0)
 	{
 		if (_nColumns <= 0)
 		{
-			nRows = (resultImage.rows / chunksHeight);
-			chunksHeight = (resultImage.rows / nRows);
+			nRows = (image.rows / chunksHeight);
+			chunksHeight = (image.rows / nRows);
 			chunksWidth = chunksHeight;
-			nColumns = (resultImage.cols / chunksWidth);
+			nColumns = (image.cols / chunksWidth);
 		} else
 		{
 			chunksHeight = chunksWidth;
-			nRows = (resultImage.rows / chunksHeight);
+			nRows = (image.rows / chunksHeight);
 		}
 		
 	} else if (_nColumns <= 0)
 	{
 		chunksWidth = chunksHeight;
-		nColumns = (resultImage.cols / chunksWidth);
+		nColumns = (image.cols / chunksWidth);
 		
 	}
 	
-	int remainingWidth = (resultImage.cols - chunksWidth*nColumns);
-	int remainingHeight = (resultImage.rows - chunksHeight*nRows);
+	int remainingWidth = (image.cols - chunksWidth*nColumns);
+	int remainingHeight = (image.rows - chunksHeight*nRows);
 	
-	float cumulatedRemainingWidth = 0.0f;
-	float cumulatedRemainingHeight = 0.0f;
-	
-	float remainingWidthPerColumn = ((float)remainingWidth / nColumns);
-	float remainingHeightPerRow = ((float)remainingHeight / nRows);
+	remainingWidthPerColumn = ((float)remainingWidth / nColumns);
+	remainingHeightPerRow = ((float)remainingHeight / nRows);
 	
 	
 	ASCII_Size chunksSize(chunksWidth, chunksHeight);
+	return chunksSize;
+}
+
+std::vector<std::vector<RegionOpacity> > *ImageFragmenter::newOpacitiesForImageMat(const cv::Mat &imageMat, cv::Mat &resultImage, int nRows, int nColumns) const
+{	
+	this->transformImage(imageMat, resultImage);
+	
+	float remainingWidthPerColumn, remainingHeightPerRow;
+	ASCII_Size chunksSize = this->imageChunksSizeForRowsAndColumns(resultImage, nRows, nColumns, remainingWidthPerColumn, remainingHeightPerRow);
+	float cumulatedRemainingWidth = 0.0f;
+	float cumulatedRemainingHeight = 0.0f;
+	
+	float chunksHeight = chunksSize.height;
+	float chunksWidth = chunksSize.width;
 	
 	int r = 0;
 	std::vector<std::vector<RegionOpacity> > *rows = new std::vector<std::vector<RegionOpacity> >();

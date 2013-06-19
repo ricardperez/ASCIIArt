@@ -42,6 +42,7 @@ private:
 	bool negative;
 	
 	void transformImage(const cv::Mat &input, cv::Mat &output) const;
+	ASCII_Size imageChunksSizeForRowsAndColumns(const cv::Mat &image, int nRows, int nColumns, float &remainingWidthPerColumn, float &remainingHeightPerRow) const;
 	
 public:
 	ImageFragmenter() : nGrays(8), contrastAlpha(1.7f), contrastBeta(30), negative(false) {}
